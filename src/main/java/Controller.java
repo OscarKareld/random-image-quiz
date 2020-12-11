@@ -8,7 +8,9 @@ public class Controller {
         externalAPIHandler = new ExternalAPIHandler();
     }
 
-    public void collectResponseFromJService() {
-        System.out.println("Controllern tar emot: " + externalAPIHandler.makeJServiceRequest());
-    }
+    //calculate random value on question and get that from ExternalAPIHandler
+
+    //Hämta och spara från databasen
+
+    //
 }

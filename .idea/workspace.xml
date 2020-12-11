@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca9a598b-d49f-470e-bea4-9f80f3739729" name="Default Changelist" comment="" />
+    <list default="true" id="4753f0e8-c571-4ad2-9ec2-851863d1e760" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Difficulty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DatabaseManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DatabaseManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ExternalAPIHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ExternalAPIHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/random-image-quiz.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/QuestionCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/QuestionCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Score.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,8 +24,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1lN7x0rujqL9x8p5GAsOjHjIRq0" />
   <component name="PropertiesComponent">
@@ -73,5 +90,16 @@
       <updated>1607425937713</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
