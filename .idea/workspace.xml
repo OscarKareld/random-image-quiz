@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4753f0e8-c571-4ad2-9ec2-851863d1e760" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Difficulty.java" afterDir="false" />
+    <list default="true" id="d0a08ff6-daaa-43f5-846a-1085f9c67638" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DatabaseManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DatabaseManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ExternalAPIHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ExternalAPIHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/random-image-quiz.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/QuestionCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/QuestionCard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Score.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Difficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Difficulty.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +35,9 @@
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\Desktop\MITT NYA FILSYSTEM\Allt som viktigt på datorn\små filer\ARBETSMAPP\4 -Syssälsättning projekt\Skola\MAU SYS\Progr\Arbetsmapp\random-image-quiz\.idea" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -89,6 +85,19 @@
       <option name="presentableId" value="Default" />
       <updated>1607425937713</updated>
     </task>
+    <task id="LOCAL−00001" summary="gitignore fil">
+      <created>1607699711138</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1607699711138</updated>
+    </task>
+    <task id="LOCAL−00002" summary="gitignore fil flyttad">
+      <created>1607699859496</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1607699859496</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -96,10 +105,17 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="gitignore fil" />
+    <MESSAGE value="gitignore fil flyttad" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore fil flyttad" />
   </component>
 </project>

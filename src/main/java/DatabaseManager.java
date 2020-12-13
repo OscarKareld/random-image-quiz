@@ -7,7 +7,7 @@ public class DatabaseManager {
     public void addScore(Score score) {
     }
 
-    public ArrayList<Score> getHighScore(int difficulty) {
+    public ArrayList<Score> getHighScore(Difficulty difficulty) {
         return null;
     }
 }
