@@ -16,11 +16,16 @@ public class RunServer {
         Controller controller = new Controller();
         port(8080);
 
+<<<<<<< HEAD
         staticFiles.location("/static");
         
         get("/", (req, res) -> {
             return new PebbleTemplateEngine().render(
             new ModelAndView(null, "templates/index.html"));
+=======
+        get("/get", (req, res) -> {
+            return "Hej Oscar";
+>>>>>>> bd4544a5e7f7126626e7c4f50b3903a054c238d9
         });
 
         get("/scoreboard", (req, res) -> {
