@@ -7,7 +7,6 @@ public class RunServer {
         port(80);
 
         get("/get", (req, res) -> {
-            controller.collectResponseFromJService();
             return "Hej Oscar";
         });
 
