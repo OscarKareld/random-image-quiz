@@ -1,29 +1,47 @@
 import static spark.Spark.*;
+import spark.ModelAndView;
+import spark.Request;
+import spark.template.pebble.PebbleTemplateEngine;
+
+
+//request.params("foo"); 
+//response.type("text/xml");
+//response.body("Hello"); 
+//response.redirect("/bar");
+//redirect.get("/fromPath", "/toPath");
 
 public class RunServer {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        port(80);
+        port(8080);
 
-        get("/get", (req, res) -> {
-            controller.collectResponseFromJService();
-            return "Hej Oscar";
+        staticFiles.location("/static");
+        
+        get("/", (req, res) -> {
+            return new PebbleTemplateEngine().render(
+            new ModelAndView(null, "templates/index.html"));
         });
 
-
-        post("/", (req, res) -> {
-            return "";
+        get("/scoreboard", (req, res) -> {
+            return new PebbleTemplateEngine().render(
+            new ModelAndView(null, "templates/scoreboard.html"));
         });
 
-
-        put("/:id", (req, res) -> {
-            return "";
+        get("/api", (req, res) -> {
+            return new PebbleTemplateEngine().render(
+            new ModelAndView(null, "templates/api.html"));
         });
 
-
-        delete("/:id", (req, res) -> {
-            return "";
+        get("/result", (req, res) -> {
+            return new PebbleTemplateEngine().render(
+            new ModelAndView(null, "templates/result.html"));
         });
+
+        get("/question", (req, res) -> {
+            return new PebbleTemplateEngine().render(
+            new ModelAndView(null, "templates/question.html"));
+        });        
+
     }
 }

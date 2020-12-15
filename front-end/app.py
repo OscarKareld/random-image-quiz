@@ -13,7 +13,7 @@ def scoreboard():
 def api():
     return render_template('api.html')
 
-@app.route('/quiz/<id>')
+@app.route('/quiz')
 def quiz():
     return render_template('quiz.html')
 
