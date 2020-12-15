@@ -5,9 +5,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+//import java.net.http.HttpClient;
+//import java.net.http.HttpRequest;
+//import java.net.http.HttpResponse;
 
 import static spark.Spark.*;
 
@@ -24,29 +24,29 @@ public class ExternalAPIHandler {
 
 
         //Test:
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().GET().header("accept", "application/json").uri(URI.create(API_URL)).build();
+        //HttpClient client = HttpClient.newHttpClient();
+        //HttpRequest request = HttpRequest.newBuilder().GET().header("accept", "application/json").uri(URI.create(API_URL)).build();
 
         //TODO Funkar att hämta både Json och XML från jsonplaceholder men inte från jService. Får fortsätta försöka klura ut hur jService vill ha sina anrop.
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
+        //HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        //System.out.println(response.body());
 
         JsonParser parser = new JsonParser(); //Kanske inte behöver skapa en ny varje gång?
-        JsonElement element = parser.parse(response.body());
-        JsonArray array = element.getAsJsonArray();
-        String answer = array.get(0).getAsString();
+        //JsonElement element = parser.parse(response.body());
+        //JsonArray array = element.getAsJsonArray();
+        //String answer = array.get(0).getAsString();
 
-        System.out.println("answer " + answer);
+        //System.out.println("answer " + answer);
 //        JsonObject pages = object.getAsJsonObject("answer");
 
 
 //        System.out.println("pages: " + pages.getAsString());
 
         Gson gson = new Gson();
-        System.out.println(gson.toJson(element));
+        //System.out.println(gson.toJson(element));
 //        gson.toJson(object);
-        response.body();
+        //response.body();
 
 
         System.out.println("gson: " + gson);
