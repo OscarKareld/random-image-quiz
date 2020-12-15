@@ -46,7 +46,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RunServer">
+  <component name="RunManager" selected="Application.ExternalAPIHandler">
+    <configuration name="ExternalAPIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ExternalAPIHandler" />
+      <module name="random-image-quiz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OscarsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="OscarsTest" />
       <module name="random-image-quiz" />
@@ -63,6 +70,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ExternalAPIHandler" />
         <item itemvalue="Application.RunServer" />
         <item itemvalue="Application.OscarsTest" />
       </list>
