@@ -20,9 +20,12 @@ public class RunServer {
             return "";
         });
 
+<<<<<<< Updated upstream
 
         delete("/:id", (req, res) -> {
             return "";
         });
+=======
+>>>>>>> Stashed changes
     }
 }
