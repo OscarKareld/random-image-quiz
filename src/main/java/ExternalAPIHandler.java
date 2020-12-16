@@ -36,8 +36,47 @@ public class ExternalAPIHandler {
     //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
     public static void main(String[] args) {
         ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
-        externalAPIHandler.getQuestionCard(200);
+        externalAPIHandler.getPicture("blue whale water");
     }
+
+
+    private String getPicture(String searchWord){
+
+        HttpResponse<JsonNode> response;
+        String pictureURL="";
+        String searchString = searchWord;
+        while(searchString.contains(" ")){
+            int index = searchString.indexOf(" ");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.replace(index,index+1, "+");
+            searchString = sb.toString();
+            System.out.println(searchString);
+        }
+        try{
+          response = Unirest.get("https://pixabay.com/api/")
+                  .queryString("key","19377269-7e2c3f690ea34c13b2d506c0b")
+                  .queryString("q",searchString)
+                  .queryString("image_type","photo")
+                  .asJson();
+
+            JsonNode jsonNode = response.getBody();
+            JSONObject jsonObject = jsonNode.getObject();
+            JSONArray jsonArray = jsonObject.getJSONArray("hits");
+            JSONObject jsonpicture = jsonArray.getJSONObject(0);
+
+
+            System.out.println(jsonpicture);
+            System.out.println(jsonpicture.getString("previewURL"));
+            pictureURL = jsonpicture.getString("previewURL");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return pictureURL;
+    }
+
+
+
+
 
 
 }
