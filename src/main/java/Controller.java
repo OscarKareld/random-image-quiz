@@ -12,22 +12,6 @@ public class Controller {
         externalAPIHandler = new ExternalAPIHandler();
     }
 
-    //calculate value on question depending on the difficulty
-    private int getValue(Difficulty difficulty){
-        int value = 100;
-
-        if(difficulty == Difficulty.easy){
-
-            value = 200;
-
-        }else if(difficulty == Difficulty.medium){
-            value = 400;
-        }else if(difficulty == Difficulty.difficult){
-            value = 600;
-        }
-        return value;
-    }
-
     //gets the highscore from the database
     public ArrayList<Score> getHighScore(Difficulty difficulty) {
         return databaseManager.getHighScore(difficulty);
@@ -38,11 +22,9 @@ public class Controller {
         databaseManager.addScore(score);
     }
     //get a list of question cards depending on the difficulty
-    public ArrayList<QuestionCard> getQuestionCards(int amount, Difficulty difficulty) throws IOException, InterruptedException {
+    public ArrayList<QuestionCard> getQuestionCards(Difficulty difficulty) throws IOException, InterruptedException {
         ArrayList<QuestionCard> list = new ArrayList<>();
-        for (int i = 0; i< amount; i++){
-//            list.add(externalAPIHandler.getQuestionCard(getValue(difficulty)));
-        }
+        externalAPIHandler.getGameWithQuestionCards(difficulty);
         return list;
     }
 

@@ -1,7 +1,11 @@
 import static spark.Spark.*;
+
+import com.google.gson.Gson;
 import spark.ModelAndView;
 import spark.Request;
 import spark.template.pebble.PebbleTemplateEngine;
+
+import java.util.ArrayList;
 
 //request.params("foo"); 
 //response.type("text/xml");
@@ -12,7 +16,7 @@ import spark.template.pebble.PebbleTemplateEngine;
 public class RunServer {
 
     public static void main(String[] args) {
-        // Controller controller = new Controller();
+        Controller controller = new Controller();
         port(8080);
         staticFiles.location("/static");
 
@@ -37,8 +41,17 @@ public class RunServer {
         });
 
         post("/save", (req, res) -> {
-            System.out.println(request.body()); // se vad post skickar oss
-        }); 
+            //System.out.println(request.body()); // se vad post skickar oss
+            return null;
+        });
+        get("/game/:diff", (req, res) -> {
+            Difficulty difficulty = Difficulty.valueOf(req.params(":diff").toString());
+            ArrayList<QuestionCard> game =  controller.getQuestionCards(difficulty);
+            Gson gson = new Gson();
+            String json =  gson.toJson(game);
+            res.header("Content-Type", "application/json");
+            return json;
+        });
     }
 }
 
