@@ -7,9 +7,9 @@ import spark.template.pebble.PebbleTemplateEngine;
 
 import java.util.ArrayList;
 
-//request.params("foo"); 
+//request.params("foo");
 //response.type("text/xml");
-//response.body("Hello"); 
+//response.body("Hello");
 //response.redirect("/bar");
 //redirect.get("/fromPath", "/toPath");
 
@@ -54,4 +54,3 @@ public class RunServer {
         });
     }
 }
-
