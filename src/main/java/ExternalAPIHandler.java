@@ -116,8 +116,9 @@ public class ExternalAPIHandler {
         }else if(difficulty == Difficulty.medium){
 
         }else if(difficulty == Difficulty.difficult){
-            ArrayList<QuestionCard> =
+            //ArrayList<QuestionCard> =
         }
+        return null;
     }
 
 
