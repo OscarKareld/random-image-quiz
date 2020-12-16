@@ -4,10 +4,16 @@ import kong.unirest.Unirest;
 import kong.unirest.json.JSONArray;
 import kong.unirest.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class ExternalAPIHandler {
     private String className = this.getClass().getName();
     private static final int nbrOfClues = 100;
     private static final String API_URL = "http://jservice.io/api/random";//"https://jsonplaceholder.typicode.com/posts";//; //
+    private LinkedList<ArrayList<QuestionCard>> queueEasy = new LinkedList();
+    private LinkedList<ArrayList<QuestionCard>> queueMedium = new LinkedList();
+    private LinkedList<ArrayList<QuestionCard>> queueDifficult = new LinkedList();
 
     private void createGames() {
         /*
@@ -69,7 +75,7 @@ public class ExternalAPIHandler {
 
     }
 
-
+    //
     private String getPicture(String searchWord){
 
         HttpResponse<JsonNode> response;
@@ -102,6 +108,16 @@ public class ExternalAPIHandler {
             e.printStackTrace();
         }
         return pictureURL;
+    }
+
+    public ArrayList<QuestionCard> getGameWithQuestionCards(Difficulty difficulty){
+        if(difficulty == Difficulty.easy){
+            queueEasy.getFirst();
+        }else if(difficulty == Difficulty.medium){
+
+        }else if(difficulty == Difficulty.difficult){
+            ArrayList<QuestionCard> =
+        }
     }
 
 
