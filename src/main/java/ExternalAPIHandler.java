@@ -111,14 +111,29 @@ public class ExternalAPIHandler {
     }
 
     public ArrayList<QuestionCard> getGameWithQuestionCards(Difficulty difficulty){
-        if(difficulty == Difficulty.easy){
-            queueEasy.getFirst();
-        }else if(difficulty == Difficulty.medium){
+        ArrayList<QuestionCard> game = null;
 
+
+        if(difficulty == Difficulty.easy){
+            game = queueEasy.getFirst();
+        }else if(difficulty == Difficulty.medium){
+            game = queueMedium.getFirst();
         }else if(difficulty == Difficulty.difficult){
-            //ArrayList<QuestionCard> =
+            game = queueDifficult.getFirst();
+
         }
-        return null;
+        while(game == null){
+            createGames();
+            if(difficulty == Difficulty.easy){
+                game = queueEasy.getFirst();
+            }else if(difficulty == Difficulty.medium){
+                game = queueMedium.getFirst();
+            }else if(difficulty == Difficulty.difficult){
+                game = queueDifficult.getFirst();
+
+            }
+        }
+        return game;
     }
 
 
