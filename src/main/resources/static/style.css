@@ -59,6 +59,20 @@ main{
     margin-bottom: 120px;
 }
 
+/* QUIZ */
+
+.question{
+    justify-content: center;
+}
+
+#h2-quiz, #h4-quiz{
+    text-align: center;
+}
+
+#submit_answer{
+    margin-left:0px;
+}
+
 /* FOOTER */
 
 footer{

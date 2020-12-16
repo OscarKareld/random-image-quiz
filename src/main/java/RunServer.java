@@ -3,7 +3,6 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.template.pebble.PebbleTemplateEngine;
 
-
 //request.params("foo"); 
 //response.type("text/xml");
 //response.body("Hello"); 
@@ -13,34 +12,33 @@ import spark.template.pebble.PebbleTemplateEngine;
 public class RunServer {
 
     public static void main(String[] args) {
-        //Controller controller = new Controller();
+        // Controller controller = new Controller();
         port(8080);
         staticFiles.location("/static");
-        
+
         get("/", (req, res) -> {
-            return new PebbleTemplateEngine().render(
-            new ModelAndView(null, "templates/index.html"));
+            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/index.html"));
         });
 
         get("/scoreboard", (req, res) -> {
-            return new PebbleTemplateEngine().render(
-            new ModelAndView(null, "templates/scoreboard.html"));
+            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/scoreboard.html"));
         });
 
         get("/api", (req, res) -> {
-            return new PebbleTemplateEngine().render(
-            new ModelAndView(null, "templates/api.html"));
+            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/api.html"));
         });
 
         get("/result", (req, res) -> {
-            return new PebbleTemplateEngine().render(
-            new ModelAndView(null, "templates/result.html"));
+            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/result.html"));
         });
 
-        get("/question", (req, res) -> {
-            return new PebbleTemplateEngine().render(
-            new ModelAndView(null, "templates/question.html"));
-        });        
+        get("/quiz", (req, res) -> {
+            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/quiz.html"));
+        });
 
+        post("/save", (req, res) -> {
+            System.out.println(request.body()); // se vad post skickar oss
+        }); 
     }
 }
+
