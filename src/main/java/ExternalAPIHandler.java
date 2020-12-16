@@ -28,7 +28,7 @@ public class ExternalAPIHandler {
         ArrayList<QuestionCard> easy = new ArrayList<>();
         ArrayList<QuestionCard> medium = new ArrayList<>();
         ArrayList<QuestionCard> hard = new ArrayList<>();
-        for (int i = 0; i<jsonArray.length(); i++) {
+        for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             if (!jsonObject.isNull("value")) {
@@ -44,27 +44,23 @@ public class ExternalAPIHandler {
                 if (difficulty > 0 && difficulty < 350) {
                     easy.add(questionCard);
 //                    System.out.println("Easy " + difficulty);
-                }
-                else if (difficulty > 350 && difficulty < 650) {
+                } else if (difficulty > 350 && difficulty < 650) {
                     medium.add(questionCard);
 //                    System.out.println("Medium " + difficulty);
-                }
-                else if (difficulty > 650 && difficulty < 1100) {
+                } else if (difficulty > 650 && difficulty < 1100) {
                     hard.add(questionCard);
 //                    System.out.println("Hard " + difficulty);
                 }
             }
-            if (easy.size()==10) {
+            if (easy.size() == 10) {
                 queueEasy.add(easy);
                 easy.clear();
                 System.out.println("Easy game added to queue");
-            }
-            else if (medium.size()==10) {
+            } else if (medium.size() == 10) {
                 queueMedium.add(medium);
                 medium.clear();
                 System.out.println("Medium game added to queue");
-            }
-            else if (hard.size()==10) {
+            } else if (hard.size() == 10) {
                 queueDifficult.add(hard);
                 hard.clear();
                 System.out.println("Hard game added to queue");
@@ -85,24 +81,24 @@ public class ExternalAPIHandler {
     }
 
     //
-    private String getPicture(String searchWord){
+    private String getPicture(String searchWord) {
 
         HttpResponse<JsonNode> response;
-        String pictureURL="";
+        String pictureURL = "";
         String searchString = searchWord;
-        while(searchString.contains(" ")){
+        while (searchString.contains(" ")) {
             int index = searchString.indexOf(" ");
             StringBuilder sb = new StringBuilder(searchString);
-            sb.replace(index,index+1, "+");
+            sb.replace(index, index + 1, "+");
             searchString = sb.toString();
             System.out.println(searchString);
         }
-        try{
-          response = Unirest.get("https://pixabay.com/api/")
-                  .queryString("key","19377269-7e2c3f690ea34c13b2d506c0b")
-                  .queryString("q",searchString)
-                  .queryString("image_type","photo")
-                  .asJson();
+        try {
+            response = Unirest.get("https://pixabay.com/api/")
+                    .queryString("key", "19377269-7e2c3f690ea34c13b2d506c0b")
+                    .queryString("q", searchString)
+                    .queryString("image_type", "photo")
+                    .asJson();
 
             JsonNode jsonNode = response.getBody();
             JSONObject jsonObject = jsonNode.getObject();
@@ -113,113 +109,35 @@ public class ExternalAPIHandler {
             System.out.println(jsonpicture);
             System.out.println(jsonpicture.getString("previewURL"));
             pictureURL = jsonpicture.getString("previewURL");
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return pictureURL;
     }
 
-    public ArrayList<QuestionCard> getGameWithQuestionCards(Difficulty difficulty){
+    public ArrayList<QuestionCard> getGameWithQuestionCards(Difficulty difficulty) {
         ArrayList<QuestionCard> game = null;
 
 
-        if(difficulty == Difficulty.easy){
+        if (difficulty == Difficulty.easy) {
             game = queueEasy.getFirst();
-        }else if(difficulty == Difficulty.medium){
+        } else if (difficulty == Difficulty.medium) {
             game = queueMedium.getFirst();
-        }else if(difficulty == Difficulty.difficult){
+        } else if (difficulty == Difficulty.difficult) {
             game = queueDifficult.getFirst();
 
         }
-        while(game == null){
+        while (game == null) {
             createGames();
-            if(difficulty == Difficulty.easy){
+            if (difficulty == Difficulty.easy) {
                 game = queueEasy.getFirst();
-            }else if(difficulty == Difficulty.medium){
+            } else if (difficulty == Difficulty.medium) {
                 game = queueMedium.getFirst();
-            }else if(difficulty == Difficulty.difficult){
-                game = queueDifficult.getFirst();
-
-
-        //String metod(String answer) {
-        //return URL;
-
-    }
-
-    //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
-    public static void main(String[] args) {
-        ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
-
-        externalAPIHandler.getPicture("blue whale water");
-
-    }
-
-    //
-    private String getPicture(String searchWord){
-
-        HttpResponse<JsonNode> response;
-        String pictureURL="";
-        String searchString = searchWord;
-        while(searchString.contains(" ")){
-            int index = searchString.indexOf(" ");
-            StringBuilder sb = new StringBuilder(searchString);
-            sb.replace(index,index+1, "+");
-            searchString = sb.toString();
-            System.out.println(searchString);
-        }
-        try{
-          response = Unirest.get("https://pixabay.com/api/")
-                  .queryString("key","19377269-7e2c3f690ea34c13b2d506c0b")
-                  .queryString("q",searchString)
-                  .queryString("image_type","photo")
-                  .asJson();
-
-            JsonNode jsonNode = response.getBody();
-            JSONObject jsonObject = jsonNode.getObject();
-            JSONArray jsonArray = jsonObject.getJSONArray("hits");
-            JSONObject jsonpicture = jsonArray.getJSONObject(0);
-
-
-            System.out.println(jsonpicture);
-            System.out.println(jsonpicture.getString("previewURL"));
-            pictureURL = jsonpicture.getString("previewURL");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return pictureURL;
-    }
-
-    public ArrayList<QuestionCard> getGameWithQuestionCards(Difficulty difficulty){
-        ArrayList<QuestionCard> game = null;
-
-
-        if(difficulty == Difficulty.easy){
-            game = queueEasy.getFirst();
-        }else if(difficulty == Difficulty.medium){
-            game = queueMedium.getFirst();
-        }else if(difficulty == Difficulty.difficult){
-            game = queueDifficult.getFirst();
-
-        }
-        while(game == null){
-            createGames();
-            if(difficulty == Difficulty.easy){
-                game = queueEasy.getFirst();
-            }else if(difficulty == Difficulty.medium){
-                game = queueMedium.getFirst();
-            }else if(difficulty == Difficulty.difficult){
+            } else if (difficulty == Difficulty.difficult) {
                 game = queueDifficult.getFirst();
 
             }
         }
         return game;
-
-
     }
-
-
-
-
-
-
 }
