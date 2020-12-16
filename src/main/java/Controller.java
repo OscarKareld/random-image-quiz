@@ -41,7 +41,7 @@ public class Controller {
     public ArrayList<QuestionCard> getQuestionCards(int amount, Difficulty difficulty) throws IOException, InterruptedException {
         ArrayList<QuestionCard> list = new ArrayList<>();
         for (int i = 0; i< amount; i++){
-            list.add(externalAPIHandler.getQuestionCard(getValue(difficulty)));
+//            list.add(externalAPIHandler.getQuestionCard(getValue(difficulty)));
         }
         return list;
     }
