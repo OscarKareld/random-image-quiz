@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -37,7 +38,7 @@ public class Controller {
         databaseManager.addScore(score);
     }
     //get a list of question cards depending on the difficulty
-    public ArrayList<QuestionCard> getQuestionCards(int amount, Difficulty difficulty){
+    public ArrayList<QuestionCard> getQuestionCards(int amount, Difficulty difficulty) throws IOException, InterruptedException {
         ArrayList<QuestionCard> list = new ArrayList<>();
         for (int i = 0; i< amount; i++){
             list.add(externalAPIHandler.getQuestionCard(getValue(difficulty)));
