@@ -6,37 +6,65 @@ import kong.unirest.json.JSONObject;
 
 public class ExternalAPIHandler {
     private String className = this.getClass().getName();
+    private static final int nbrOfClues = 100;
     private static final String API_URL = "http://jservice.io/api/random";//"https://jsonplaceholder.typicode.com/posts";//; //
 
-    public QuestionCard getQuestionCard(int value) {
+    private void createGames() {
+        /*
+        Metoden skickar ett anrom (random) och tar emot 100 clues. Iterera igenom och samla clues:en i 3 arraylists (?).
+        För varje clue i en arraylist görs ett anrop till bild-metoden.
+        Arraylistsen sparas sedan i en kö, och så fort ett anrop görs till en tom kö, så görs ett nytt anrop till jService
+         */
 
-        QuestionCard questionCard = new QuestionCard();
-        questionCard.setDifficulty(value);
 
         HttpResponse<JsonNode> response = Unirest.get(API_URL)
-                .queryString("value", String.valueOf(value))
+//                .queryString("value", String.valueOf(value))
+                .queryString("count", nbrOfClues)
                 .asJson();
 
-        System.out.println("URL: " + Unirest.get(API_URL)
-                .queryString("value", String.valueOf(value))
-                .getUrl());
-
         JsonNode jsonNode = response.getBody();
+        System.out.println(jsonNode);
         JSONArray jsonArray = jsonNode.getArray();
-        JSONObject jsonObject = jsonArray.getJSONObject(0);
+        for (int i = 0; i<jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-        System.out.println("Answer: " + jsonObject.getString("answer"));
-        System.out.println("Question: " + jsonObject.getString("question"));
-        System.out.println("Value: " + jsonObject.getString("value"));
-        questionCard.setAnswer(jsonObject.getString("answer"));
+            if (jsonObject.getString("value") != null) {
+                QuestionCard questionCard = new QuestionCard();
 
-        return questionCard;
+                questionCard.setId(jsonObject.getString("id"));
+                questionCard.setAnswer(jsonObject.getString("answer"));
+                questionCard.setQuestion(jsonObject.getString("question"));
+                questionCard.setDifficulty(jsonObject.getInt("value"));
+            }
+
+
+
+
+
+            /*
+            System.out.println(i + "\n Answer: " + jsonObject.getString("answer"));
+            System.out.println("Question: " + jsonObject.getString("question"));
+            System.out.println("Value: " + jsonObject.getString("value"));
+            System.out.println();
+
+             */
+
+//            questionCard.setAnswer(jsonObject.getString("answer"));
+        }
+
+
+
+
+
+        //String metod(String answer) {
+        //return URL;
+
     }
 
     //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
     public static void main(String[] args) {
         ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
-        externalAPIHandler.getQuestionCard(200);
+        externalAPIHandler.createGames();
     }
 
 
