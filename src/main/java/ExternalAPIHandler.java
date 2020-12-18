@@ -34,22 +34,24 @@ public class ExternalAPIHandler {
             if (!jsonObject.isNull("value")) {
                 QuestionCard questionCard = new QuestionCard();
                 String answer = jsonObject.getString("answer");
+                String image = getPicture(answer);
+
+                if (image == null) {
+                    System.out.println("Image is null" + 1);
+                    continue;
+                }
                 int difficulty = jsonObject.getInt("value");
                 questionCard.setId(jsonObject.getString("id"));
                 questionCard.setAnswer(answer);
                 questionCard.setQuestion(jsonObject.getString("question"));
                 questionCard.setDifficulty(difficulty);
-//                questionCard.setImage(getPicture(answer)); //TODO Hehe den här kaosar
-//                System.out.println("Questioncard image: " + questionCard.getImage());
+                questionCard.setImage(image); //TODO Hehe den här kaosar
                 if (difficulty > 0 && difficulty < 350) {
                     easy.add(questionCard);
-//                    System.out.println("Easy " + difficulty);
                 } else if (difficulty > 350 && difficulty < 650) {
                     medium.add(questionCard);
-//                    System.out.println("Medium " + difficulty);
                 } else if (difficulty > 650 && difficulty < 1100) {
                     hard.add(questionCard);
-//                    System.out.println("Hard " + difficulty);
                 }
             }
             if (easy.size() == 10) {
@@ -66,10 +68,6 @@ public class ExternalAPIHandler {
                 System.out.println("Hard game added to queue");
             }
         }
-        if (queueEasy.isEmpty() || queueMedium.isEmpty() || queueDifficult.isEmpty()) {
-            createGames();
-        }
-
     }
 
     //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
@@ -84,15 +82,68 @@ public class ExternalAPIHandler {
     private String getPicture(String searchWord) {
 
         HttpResponse<JsonNode> response;
-        String pictureURL = "";
+        String pictureURL = null;
         String searchString = searchWord;
+        System.out.println(searchString);
+        while (searchString.contains("(")) {
+            int index1 = searchString.indexOf("(");
+            int index2 = searchString.indexOf(")");
+            StringBuilder sb = new StringBuilder(searchString);
+            if (index2 != -1) {
+                sb.delete(index1, index2 + 1);
+                searchString = sb.toString();
+            } else {
+                sb.delete(index1, index1 + 1);
+                searchString = sb.toString();
+            }
+        }
+        while (searchString.contains("<")) {
+            int index1 = searchString.indexOf("<");
+            int index2 = searchString.indexOf(">");
+            StringBuilder sb = new StringBuilder(searchString);
+            if (index2 != -1) {
+                sb.delete(index1, index2 + 1);
+                searchString = sb.toString();
+            } else {
+                sb.delete(index1, index1 + 1);
+                searchString = sb.toString();
+            }
+        }
+        while (searchString.contains("\"")) {
+            int index1 = searchString.indexOf("\"");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
+        while (searchString.contains("\\")) {
+            int index1 = searchString.indexOf("\\");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
+        if (searchString.startsWith("a ") || searchString.startsWith("A ")) {
+            searchString = searchString.substring(2);
+        }
+        if (searchString.startsWith("the ") || searchString.startsWith("The ")) {
+            searchString = searchString.substring(4);
+        }
+        while (searchString.endsWith(" ")) {
+            searchString = searchString.substring(0, searchString.length() - 1);
+        }
+        while (searchString.startsWith(" ")) {
+            searchString = searchString.substring(1);
+        }
+        System.out.println(searchString);
         while (searchString.contains(" ")) {
             int index = searchString.indexOf(" ");
             StringBuilder sb = new StringBuilder(searchString);
             sb.replace(index, index + 1, "+");
             searchString = sb.toString();
-            System.out.println(searchString);
         }
+        System.out.println(searchString);
+
         try {
             response = Unirest.get("https://pixabay.com/api/")
                     .queryString("key", "19377269-7e2c3f690ea34c13b2d506c0b")
@@ -104,14 +155,83 @@ public class ExternalAPIHandler {
             JSONObject jsonObject = jsonNode.getObject();
             JSONArray jsonArray = jsonObject.getJSONArray("hits");
             JSONObject jsonpicture = jsonArray.getJSONObject(0);
-
-
-            System.out.println(jsonpicture);
             System.out.println(jsonpicture.getString("previewURL"));
             pictureURL = jsonpicture.getString("previewURL");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("hittar inget: " + pictureURL);
         }
+
+        String saveorigninalSearchString = searchString;
+        while (searchString != "" && pictureURL == null) {
+            System.out.println("cont search with individual words");
+            String searchStringPart = "";
+            int index = searchString.indexOf("+");
+            if (index != -1) {
+                searchStringPart = searchString.substring(0, index);
+                searchString = searchString.substring(index + 1);
+            } else {
+                searchStringPart = searchString;
+                searchString = "";
+            }
+
+            System.out.println("SÖKER på: " + searchStringPart);
+            try {
+                response = Unirest.get("https://pixabay.com/api/")
+                        .queryString("key", "19377269-7e2c3f690ea34c13b2d506c0b")
+                        .queryString("q", searchStringPart)
+                        .queryString("image_type", "photo")
+                        .asJson();
+
+                JsonNode jsonNode = response.getBody();
+                JSONObject jsonObject = jsonNode.getObject();
+                JSONArray jsonArray = jsonObject.getJSONArray("hits");
+                JSONObject jsonpicture = jsonArray.getJSONObject(0);
+                System.out.println(jsonpicture.getString("previewURL"));
+                pictureURL = jsonpicture.getString("previewURL");
+            } catch (Exception e) {
+                System.out.println("Hittar fortfarande inget ");
+            }
+
+        }
+        searchString = saveorigninalSearchString;
+        System.out.println(searchString);
+        while (searchString != "" && pictureURL == null) {
+            System.out.println("cont search with shorter and shorter words");
+            String searchStringPart = "";
+            while (searchString.contains("+")) {
+                int index = searchString.indexOf("+");
+                StringBuilder sb = new StringBuilder(searchString);
+                sb.delete(index, index + 1);
+                searchString = sb.toString();
+                System.out.println(searchString);
+            }
+
+            searchString = searchString.substring(0, searchString.length() - 1);
+
+            System.out.println("SÖKER på: " + searchString);
+            try {
+                response = Unirest.get("https://pixabay.com/api/")
+                        .queryString("key", "19377269-7e2c3f690ea34c13b2d506c0b")
+                        .queryString("q", searchString)
+                        .queryString("image_type", "photo")
+                        .asJson();
+
+                JsonNode jsonNode = response.getBody();
+                JSONObject jsonObject = jsonNode.getObject();
+                JSONArray jsonArray = jsonObject.getJSONArray("hits");
+                JSONObject jsonpicture = jsonArray.getJSONObject(0);
+                System.out.println(jsonpicture.getString("previewURL"));
+                pictureURL = jsonpicture.getString("previewURL");
+            } catch (Exception e) {
+                System.out.println("Hittar fortfarande inget ");
+            }
+
+
+        }
+        if (pictureURL == null) {
+            System.err.println("FEEEEEEEL inget kunde hittas ");
+        }
+        System.out.println("return");
         return pictureURL;
     }
 

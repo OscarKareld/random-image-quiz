@@ -2,7 +2,6 @@ import static spark.Spark.*;
 
 import com.google.gson.Gson;
 import spark.ModelAndView;
-import spark.Request;
 import spark.template.pebble.PebbleTemplateEngine;
 
 import java.util.ArrayList;
@@ -50,6 +49,23 @@ public class RunServer {
             Gson gson = new Gson();
             String json =  gson.toJson(game);
             res.header("Content-Type", "application/json");
+            return json;
+        });
+
+        get("/highscore/:diff", (req, res) -> {
+            Difficulty difficulty = Difficulty.valueOf(req.params(":diff").toString());
+            ArrayList<Score> highScore = controller.getHighScore(difficulty);
+            Gson gson = new Gson();
+            String json =  gson.toJson(highScore);
+            res.header("Content-Type", "application/json");
+            return json;
+        });
+
+        post("/score", (req, res) -> {
+            String json = req.body();
+            Gson gson = new Gson();
+            Score score = gson.fromJson(json, Score.class);
+            controller.addScore(score);
             return json;
         });
     }
