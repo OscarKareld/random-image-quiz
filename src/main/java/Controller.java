@@ -37,6 +37,8 @@ public class Controller {
     public void addScore(Score score) {
         databaseManager.addScore(score);
     }
+
+
     //get a list of question cards depending on the difficulty
     public ArrayList<QuestionCard> getQuestionCards(int amount, Difficulty difficulty) throws IOException, InterruptedException {
         ArrayList<QuestionCard> list = new ArrayList<>();
