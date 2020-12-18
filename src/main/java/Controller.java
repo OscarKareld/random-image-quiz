@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,10 +25,22 @@ public class Controller {
 
 
     //get a list of question cards depending on the difficulty
-    public ArrayList<QuestionCard> getQuestionCards(Difficulty difficulty) throws IOException, InterruptedException {
+    public ArrayList<QuestionCard> getQuestionCards(Difficulty difficulty) {
         ArrayList<QuestionCard> list = new ArrayList<>();
-        externalAPIHandler.getGameWithQuestionCards(difficulty);
+        list = externalAPIHandler.getGameWithQuestionCards(difficulty);
         return list;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("här");
+        Difficulty difficulty = Difficulty.valueOf("medium");
+        System.out.println("här" + difficulty);
+        Controller controller = new Controller();
+        ArrayList<QuestionCard> game =  controller.getQuestionCards(difficulty);
+        System.out.println(game.size() + "\n" + game.toString());
+        Gson gson = new Gson();
+        String json =  gson.toJson(game);
+        System.out.println();
     }
 
 }
