@@ -2,7 +2,6 @@ import static spark.Spark.*;
 
 import com.google.gson.Gson;
 import spark.ModelAndView;
-import spark.Request;
 import spark.template.pebble.PebbleTemplateEngine;
 
 import java.util.ArrayList;

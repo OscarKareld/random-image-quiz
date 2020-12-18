@@ -34,23 +34,24 @@ public class ExternalAPIHandler {
             if (!jsonObject.isNull("value")) {
                 QuestionCard questionCard = new QuestionCard();
                 String answer = jsonObject.getString("answer");
+                String image = getPicture(answer);
+
+                if (image == null) {
+                    System.out.println("Image is null" + 1);
+                    continue;
+                }
                 int difficulty = jsonObject.getInt("value");
                 questionCard.setId(jsonObject.getString("id"));
                 questionCard.setAnswer(answer);
                 questionCard.setQuestion(jsonObject.getString("question"));
                 questionCard.setDifficulty(difficulty);
-                System.out.println(questionCard.getQuestion());
-                questionCard.setImage(getPicture(answer)); //TODO Hehe den här kaosar
-//                System.out.println("Questioncard image: " + questionCard.getImage());
+                questionCard.setImage(image); //TODO Hehe den här kaosar
                 if (difficulty > 0 && difficulty < 350) {
                     easy.add(questionCard);
-//                    System.out.println("Easy " + difficulty);
                 } else if (difficulty > 350 && difficulty < 650) {
                     medium.add(questionCard);
-//                    System.out.println("Medium " + difficulty);
                 } else if (difficulty > 650 && difficulty < 1100) {
                     hard.add(questionCard);
-//                    System.out.println("Hard " + difficulty);
                 }
             }
             if (easy.size() == 10) {
@@ -67,17 +68,13 @@ public class ExternalAPIHandler {
                 System.out.println("Hard game added to queue");
             }
         }
-        if (queueEasy.isEmpty() || queueMedium.isEmpty() || queueDifficult.isEmpty()) {
-            createGames();
-        }
-
     }
 
     //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
     public static void main(String[] args) {
         ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
         externalAPIHandler.createGames();
-        //externalAPIHandler.getPicture("Emmett Culligan");
+//        externalAPIHandler.getPicture("blue whale water");
 
     }
 
@@ -258,6 +255,7 @@ public class ExternalAPIHandler {
                 game = queueMedium.getFirst();
             } else if (difficulty == Difficulty.difficult) {
                 game = queueDifficult.getFirst();
+
             }
         }
         return game;

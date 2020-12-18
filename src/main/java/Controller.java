@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Controller {
     private String className = this.getClass().getName();
