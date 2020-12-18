@@ -1,6 +1,7 @@
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Controller {
     private String className = this.getClass().getName();
@@ -10,22 +11,6 @@ public class Controller {
     public Controller() {
         databaseManager = new DatabaseManager();
         externalAPIHandler = new ExternalAPIHandler();
-    }
-
-    //calculate value on question depending on the difficulty
-    private int getValue(Difficulty difficulty){
-        int value = 100;
-
-        if(difficulty == Difficulty.easy){
-
-            value = 200;
-
-        }else if(difficulty == Difficulty.medium){
-            value = 400;
-        }else if(difficulty == Difficulty.difficult){
-            value = 600;
-        }
-        return value;
     }
 
     //gets the highscore from the database
@@ -40,12 +25,22 @@ public class Controller {
 
 
     //get a list of question cards depending on the difficulty
-    public ArrayList<QuestionCard> getQuestionCards(int amount, Difficulty difficulty) throws IOException, InterruptedException {
+    public ArrayList<QuestionCard> getQuestionCards(Difficulty difficulty) {
         ArrayList<QuestionCard> list = new ArrayList<>();
-        for (int i = 0; i< amount; i++){
-            list.add(externalAPIHandler.getQuestionCard(getValue(difficulty)));
-        }
+        list = externalAPIHandler.getGameWithQuestionCards(difficulty);
         return list;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("här");
+        Difficulty difficulty = Difficulty.valueOf("medium");
+        System.out.println("här" + difficulty);
+        Controller controller = new Controller();
+        ArrayList<QuestionCard> game =  controller.getQuestionCards(difficulty);
+        System.out.println(game.size() + "\n" + game.toString());
+        Gson gson = new Gson();
+        String json =  gson.toJson(game);
+        System.out.println();
     }
 
 }
