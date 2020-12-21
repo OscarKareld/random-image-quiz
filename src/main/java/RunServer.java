@@ -44,7 +44,9 @@ public class RunServer {
             return null;
         });
         get("/game/:diff", (req, res) -> {
+            System.out.println("här");
             Difficulty difficulty = Difficulty.valueOf(req.params(":diff").toString());
+            System.out.println("här");
             ArrayList<QuestionCard> game =  controller.getQuestionCards(difficulty);
             Gson gson = new Gson();
             String json =  gson.toJson(game);

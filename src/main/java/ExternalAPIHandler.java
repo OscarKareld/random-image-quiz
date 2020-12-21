@@ -55,16 +55,16 @@ public class ExternalAPIHandler {
                 }
             }
             if (easy.size() == 10) {
-                queueEasy.add(easy);
-                easy.clear();
+                queueEasy.addLast(easy);
+                easy = new ArrayList<>();
                 System.out.println("Easy game added to queue");
             } else if (medium.size() == 10) {
-                queueMedium.add(medium);
-                medium.clear();
+                queueMedium.addLast(medium);
+                medium = new ArrayList<>();
                 System.out.println("Medium game added to queue");
             } else if (hard.size() == 10) {
-                queueDifficult.add(hard);
-                hard.clear();
+                queueDifficult.addLast(hard);
+                hard = new ArrayList<>();
                 System.out.println("Hard game added to queue");
             }
         }
@@ -239,25 +239,28 @@ public class ExternalAPIHandler {
         ArrayList<QuestionCard> game = null;
 
 
-        if (difficulty == Difficulty.easy) {
+        if (difficulty == Difficulty.easy && !queueEasy.isEmpty()) {
             game = queueEasy.getFirst();
-        } else if (difficulty == Difficulty.medium) {
+            System.out.println("söker inte");
+        } else if (difficulty == Difficulty.medium && !queueMedium.isEmpty()) {
             game = queueMedium.getFirst();
-        } else if (difficulty == Difficulty.difficult) {
+        } else if (difficulty == Difficulty.difficult && !queueDifficult.isEmpty()) {
             game = queueDifficult.getFirst();
 
         }
         while (game == null) {
             createGames();
-            if (difficulty == Difficulty.easy) {
+            if (difficulty == Difficulty.easy && !queueEasy.isEmpty()) {
                 game = queueEasy.getFirst();
-            } else if (difficulty == Difficulty.medium) {
+                System.out.println("har sökt");
+            } else if (difficulty == Difficulty.medium && !queueMedium.isEmpty()) {
                 game = queueMedium.getFirst();
-            } else if (difficulty == Difficulty.difficult) {
+            } else if (difficulty == Difficulty.difficult && !queueDifficult.isEmpty()) {
                 game = queueDifficult.getFirst();
 
             }
         }
+        System.out.println("strolek: " + game.size() + "\n innehåll: " + game.toString());
         return game;
     }
 }
