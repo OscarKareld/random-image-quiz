@@ -1,14 +1,14 @@
 var questions 
 var index = 0 
 
-function startQuiz(difficulty) {
+function startQuiz() {
+    var difficulty = window.location.pathname.replace("/game/", "")
     $.ajax({
       url: "localhost:8080/game/" + difficulty,        
       headers: {"Accept": "application/json"}  
     })
-
+    
     questions = data
-
     printQuestion();
     
 /* countdown
