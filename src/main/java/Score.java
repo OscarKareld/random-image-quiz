@@ -1,11 +1,11 @@
-import java.util.Date;
+import java.sql.Date;
 
 public class Score {
     private String className = this.getClass().getName();
     private String userNickName;
     private int points;
     private Date date; //Date från java.util eller SQL?
-    private int difficulty;
+    private String difficulty;
 
     public String getUserNickName() {
         return userNickName;
@@ -31,11 +31,11 @@ public class Score {
         this.date = date;
     }
 
-    public int getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(int difficulty) {
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 }
