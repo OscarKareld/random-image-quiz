@@ -17,27 +17,29 @@ $(document).ready(function() {
 
     questions = [question1, question2];
     
-    printQuestion(); 
+    printQuestion(questions[index]); 
 });
 
-function printQuestion(){
+function printQuestion(question){
 
-    $('#h2-quiz').text(questions[index]['difficulty'] + " Quiz");
-    $('.card-text').text(questions[index]['question']);
-    $('#img-clue').attr("src", questions[index]['img']); 
-    index ++
+    $('#h2-quiz').text(question['difficulty'] + " Quiz");
+    $('.card-text').text(question['question']);
+    $('#img-clue').attr("src", question['img']); 
 };
 
-$("#submit_answer").on("click", checkAnswer())
+$("#question-form").submit(onSubmit)
 
-function checkAnswer(){
+function onSubmit(event){
+    event.preventDefault()
     console.log("Det funka iaf")
     var answer = $("input").val();
     console.log(answer)
     console.log(questions[index]['answer'])
 
     if (answer == questions[index]['answer']) {
-        printQuestion() //function för att dölja svaret och visa grönt
+        index ++
+        printQuestion(questions[index]) //function för att dölja svaret och visa grönt
+        
     } 
     else {
         $('input:text').focus(
