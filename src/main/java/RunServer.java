@@ -35,7 +35,7 @@ public class RunServer {
             return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/result.html"));
         });
 
-        get("/quiz", (req, res) -> {
+        get("/quiz/:diff", (req, res) -> {
             return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/quiz.html"));
         });
 

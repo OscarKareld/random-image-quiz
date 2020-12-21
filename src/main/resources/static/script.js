@@ -2,14 +2,16 @@ var questions
 var index = 0 
 
 function startQuiz() {
-    var difficulty = window.location.pathname.replace("/game/", "")
+    var difficulty = window.location.pathname.replace("/quiz/", "")
     $.ajax({
       url: "localhost:8080/game/" + difficulty,        
       headers: {"Accept": "application/json"}  
     })
     
     questions = data
-    printQuestion();
+    console.log(questions)
+    console.log(questions[index])
+    printQuestion(questions[index]);
     
 /* countdown
             var timeLeft = 30;
@@ -30,25 +32,27 @@ function startQuiz() {
 */
     
 };
-function printQuestion(){
-    $('#h2-quiz').text(questions[index]['difficulty'] + " Quiz");
-    $('.card-text').text(questions[index]['question']);
-    $('#img-clue').attr("src", questions[index]['img']); 
+function printQuestion(question){
+    $('#h2-quiz').text(question['difficulty'] + " Quiz");
+    $('.card-text').text(question['question']);
+    $('#img-clue').attr("src", question['img']); 
     index ++
 };
 
-$("#submit_answer").on("click", checkAnswer())
+$("#question-form").submit(checkAnswer)
 
-function checkAnswer(){
+function checkAnswer(event){
+    event.preventDefault()
     console.log("Det funka iaf")
     var answer = $("input").val();
     console.log(answer)
     console.log(questions[index]['answer'])
 
     if (answer == questions[index]['answer']) {
-        printQuestion() //function för att dölja svaret och visa grönt
-    }
-     
+        index ++
+        printQuestion(questions[index]) //function för att dölja svaret och visa grönt
+        
+    } 
     else {
         $('input:text').focus(
             function(){
