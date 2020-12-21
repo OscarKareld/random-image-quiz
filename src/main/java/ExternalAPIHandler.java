@@ -15,7 +15,7 @@ public class ExternalAPIHandler {
     private LinkedList<ArrayList<QuestionCard>> queueMedium = new LinkedList();
     private LinkedList<ArrayList<QuestionCard>> queueDifficult = new LinkedList();
 
-    private void createGames() {
+    public void createGames() {
 
         HttpResponse<JsonNode> response = Unirest.get(API_URL)
                 .queryString("count", nbrOfClues)
@@ -34,18 +34,21 @@ public class ExternalAPIHandler {
             if (!jsonObject.isNull("value")) {
                 QuestionCard questionCard = new QuestionCard();
                 String answer = jsonObject.getString("answer");
+                /* TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
                 String image = getPicture(answer);
 
                 if (image == null) {
-                    System.out.println("Image is null" + 1);
+                    System.out.println("Image is null. i = " + i);
                     continue;
                 }
+
+                 */
                 int difficulty = jsonObject.getInt("value");
                 questionCard.setId(jsonObject.getString("id"));
                 questionCard.setAnswer(answer);
                 questionCard.setQuestion(jsonObject.getString("question"));
                 questionCard.setDifficulty(difficulty);
-                questionCard.setImage(image); //TODO Hehe den här kaosar
+//                questionCard.setImage(image); //TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
                 if (difficulty > 0 && difficulty < 350) {
                     easy.add(questionCard);
                 } else if (difficulty > 350 && difficulty < 650) {
@@ -56,17 +59,20 @@ public class ExternalAPIHandler {
             }
             if (easy.size() == 10) {
                 queueEasy.addLast(easy);
-                easy = new ArrayList<>();
+                easy.clear();
                 System.out.println("Easy game added to queue");
             } else if (medium.size() == 10) {
                 queueMedium.addLast(medium);
-                medium = new ArrayList<>();
+                medium.clear();
                 System.out.println("Medium game added to queue");
             } else if (hard.size() == 10) {
                 queueDifficult.addLast(hard);
-                hard = new ArrayList<>();
+                hard.clear();
                 System.out.println("Hard game added to queue");
             }
+        } //TODO: La till den här igen för att effektivisera hämtningen, men har för mig att det fanns en bra anledning till att inte ha den.
+        if (queueEasy.size() <= 1 || queueMedium.size() <= 1 || queueDifficult.size() <= 1) {
+            createGames();
         }
     }
 
