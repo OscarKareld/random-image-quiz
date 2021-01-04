@@ -2,7 +2,8 @@
 var questions 
 var index = -1
 var timerId = 0
-var answers = [] 
+var answers = []
+var timeLeft = -1;
 
 $(document).ready(function() { //denna körs varje gång en sida laddas, det vill vi inte
     // hämta svårighetsgrad
@@ -45,6 +46,8 @@ function printQuestion(){
 $("#question-form").submit(checkAnswer)
 
 function checkAnswer(event){
+    var points = timeLeft;
+
     event.preventDefault() // den gör så att saker funkar, fattar inte riktigt hur dock...
 
     var answer = $("input").val(); // hämtar vårt svar
@@ -52,10 +55,15 @@ function checkAnswer(event){
 
     $("#answer").val('') // tömmer input
 
-    if (answer == questions[index]['answer']) {  
+    if (answer == questions[index]['answer']) {
+    if(points >145){
+        points = points*points/90;
+        }else{
+       points = points*points/180;
+       }
       // sparar resultat
       var right = { question : questions[index]['question'],
-                    player_answer : "right", 
+                    player_points : points,
                     answer : questions[index]['answer'] }
       answers.push(right)
 
@@ -65,14 +73,14 @@ function checkAnswer(event){
 };
 
 function startTimer(){
-  var timeLeft = 30;
-  timerId = setInterval(countdown, 1000);
+  timeLeft = 300;
+  timerId = setInterval(countdown, 100);
   
   function countdown() {
     if (timeLeft == -1) {
       // sparar resultat
       var wrong = { question : questions[index]['question'],
-                    player_answer : "wrong", 
+                    player_points : 0,
                     answer : questions[index]['answer'] }
       answers.push(wrong)
 
@@ -80,10 +88,10 @@ function startTimer(){
       printQuestion()
     } 
     else {
-      if (timeLeft == 15) {
+      if (timeLeft == 150) {
         $('#img-clue').show(); 
       }
-      $('#timer').text(timeLeft + ' seconds remaining');
+      $('#timer').text(timeLeft/10 + ' seconds remaining');
       timeLeft--;
     }
   return timerId
