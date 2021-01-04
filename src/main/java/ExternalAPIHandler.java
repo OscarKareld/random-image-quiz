@@ -70,16 +70,13 @@ public class ExternalAPIHandler {
                 hard = new ArrayList<>();
                 System.out.println("Hard game added to queue");
             }
-        } //TODO: La till den här igen för att effektivisera hämtningen, men har för mig att det fanns en bra anledning till att inte ha den.
-        if (queueEasy.size() <= 1 || queueMedium.size() <= 1 || queueDifficult.size() <= 1) {
-            createGames();
         }
     }
 
     //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
     public static void main(String[] args) {
         ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
-        externalAPIHandler.createGames();
+        externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
 //        externalAPIHandler.getPicture("blue whale water");
 
     }
@@ -254,19 +251,18 @@ public class ExternalAPIHandler {
             game = queueDifficult.getFirst();
 
         }
-        while (game == null) {
-            createGames();
-            if (difficulty == Difficulty.easy && !queueEasy.isEmpty()) {
-                game = queueEasy.getFirst();
-                System.out.println("har sökt");
-            } else if (difficulty == Difficulty.medium && !queueMedium.isEmpty()) {
-                game = queueMedium.getFirst();
-            } else if (difficulty == Difficulty.difficult && !queueDifficult.isEmpty()) {
-                game = queueDifficult.getFirst();
+        if (queueEasy.size() <= 1 || queueMedium.size() <= 1 || queueDifficult.size() <= 1) {
+            ApiThread apiThread = new ApiThread();
+            apiThread.start();
+        }
+        return game;
+    }
 
+    private class ApiThread extends Thread {
+        public void run() {
+            while (queueEasy.size() <= 1 || queueMedium.size() <= 1 || queueDifficult.size() <= 1) {
+                createGames();
             }
         }
-        System.out.println("strolek: " + game.size() + "\n innehåll: " + game.toString());
-        return game;
     }
 }
