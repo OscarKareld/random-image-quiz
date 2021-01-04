@@ -1,3 +1,4 @@
+// blir alltid samma spel som körs
 // känns dumt att ha massa gobala variabler...
 var questions
 var index = -1
@@ -26,7 +27,8 @@ $(document).ready(function () { //denna körs varje gång en sida laddas
 
 
 function printQuestion() {
-  if (index == 2) { // när vi kommit till sista frågan avbryter vi
+  if (index == 9) { // när vi kommit till sista frågan avbryter vi
+    clearTimeout(timerId);
     showResult();
   }
 
@@ -41,13 +43,17 @@ function printQuestion() {
     startTimer();
   }
 };
+
 // när svaret ges körs checkAnswer
 $("#question-form").submit(checkAnswer)
+
+// när namnet skickas körs saveToScoreboard 
+$("#name-form").submit(saveToScoreboard)
 
 function checkAnswer(event) {
   event.preventDefault() // den gör så att saker funkar, fattar inte riktigt hur dock...
 
-  var answer = $("input").val(); // hämtar vårt svar
+  var answer = $("#answer_input").val(); // hämtar vårt svar
   console.log(questions[index]['answer'])
 
   $("#answer").val('') // tömmer input
@@ -56,7 +62,7 @@ function checkAnswer(event) {
     // sparar resultat
     var right = {
       question: questions[index]['question'],
-      player_answer: 'right',
+      player_points: 200,
       answer: questions[index]['answer']
     }
     answers.push(right)
@@ -75,7 +81,7 @@ function startTimer() {
       // sparar resultat
       var wrong = {
         question: questions[index]['question'],
-        player_answer: 'wrong',
+        player_points: 0,
         answer: questions[index]['answer']
       }
       answers.push(wrong)
@@ -97,15 +103,25 @@ function startTimer() {
 function showResult() {
   $('#quiz-page').hide();
   $('#result-page').show();
+  console.log("showresult")
 
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < 10; i++) {
     var item = $(document.createElement('li'));
     $(item).attr("class", "list-group-item");
-    $(item).html("Question: " + answers[i]['question'] + ": " + answers[i]['answer']);
+    $(item).html("Fråga: " + answers[i]['question'] + "<br> Svar: " + answers[i]['answer']);
     $(item).appendTo(".result-board");
   };
+
+  var difficulty = window.location.pathname.replace("/quiz/", "")
+  $("#play-again > a").attr("href", "/quiz/" + difficulty)
 };
 
+function saveToScoreboard(){
+  var name = $("#name_input").val();
+  var highscore = {
+    name: answers
+  };
+  console.log(highscore)
 
-
+}
 
