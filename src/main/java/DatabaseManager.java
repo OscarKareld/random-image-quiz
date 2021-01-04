@@ -49,25 +49,26 @@ public class DatabaseManager {
             Connection connection = connect();
             Statement statement = connection.createStatement();
 
-            String addScoreQuery = "insert into RIQ.dbo.Highscore (nickname, points, date, difficulty)" +
-                    " values ('" + score.getUserNickName() + "', " + score.getPoints() + ", '" + score.getDate() + "', '" + score.getDifficulty() + "');";
+            String addScoreQuery = "insert into RIQ.dbo.Highscore (nickname, points, datetime, difficulty)" +
+                    " values ('" + score.getUserNickName() + "', " + score.getPoints() + ", '" + score.getDatetime() + "', '" + score.getDifficulty() + "');";
             System.out.println("addScoreQuery: " + addScoreQuery);
 
-            statement.executeQuery(addScoreQuery);
+//            statement.executeQuery(addScoreQuery);
+            statement.executeUpdate(addScoreQuery);
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Score> getHighScore(Difficulty difficulty) {
+    public ArrayList<Score> getHighScore(Difficulty difficulty, int nbrOfScores) {
         ArrayList<Score> highScoreList = new ArrayList<>();
 
         try {
             Connection connection = connect();
             Statement statement = connection.createStatement();
 
-            String getHighScoreQuery = "Select * from RIQ.dbo.Highscore where difficulty = '" + difficulty + "';";
+            String getHighScoreQuery = "Select top " + nbrOfScores + " * from RIQ.dbo.Highscore where difficulty = '" + difficulty + "' order by points DESC;";
             System.out.println("getHighscoreQuery: " + getHighScoreQuery);
 
             ResultSet results = statement.executeQuery(getHighScoreQuery);
@@ -75,11 +76,12 @@ public class DatabaseManager {
                 Score score = new Score();
                 score.setUserNickName(results.getString("nickname"));
                 score.setPoints(results.getInt("points"));
-                score.setDate(results.getDate("date"));
+                score.setDatetime(results.getString("datetime"));
                 score.setDifficulty(results.getString("difficulty"));
                 highScoreList.add(score);
                 System.out.println(score.getUserNickName());
                 System.out.println("points: " + score.getPoints());
+                System.out.println("datetime: " + score.getDatetime());
             }
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
@@ -92,12 +94,12 @@ public class DatabaseManager {
         DatabaseManager dbm = new DatabaseManager();
         Score score = new Score();
         score.setUserNickName("Oscar");
-        score.setPoints(10000);
-        score.setDate(new Date(1000000)); //lol
+        score.setPoints(80000);
+        score.setDatetime("1971-01-03 00:00:00");
         score.setDifficulty("easy");
 
-//        dbm.addScore(score); //TODO: Fick nåt exception från SQL, men värdena lades in i tabellen ändå. Vid testning räcker det med att ändra userNickName.
+        dbm.addScore(score); //TODO: Fick nåt exception från SQL, men värdena lades in i tabellen ändå. Vid testning räcker det med att ändra userNickName.
 //        dbm.testSelectQuery();
-        dbm.getHighScore(Difficulty.easy);
+        dbm.getHighScore(Difficulty.easy, 1);
     }
 }

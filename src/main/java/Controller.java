@@ -14,8 +14,8 @@ public class Controller {
     }
 
     //gets the highscore from the database
-    public ArrayList<Score> getHighScore(Difficulty difficulty) {
-        return databaseManager.getHighScore(difficulty);
+    public ArrayList<Score> getHighScore(Difficulty difficulty, int nbrOfScores) {
+        return databaseManager.getHighScore(difficulty, nbrOfScores);
     }
 
     //adds a score to the database
