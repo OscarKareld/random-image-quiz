@@ -37,14 +37,14 @@ function printQuestion() {
     showResult();
   }
 
-  else {
-    index++
-    $('#h4-quiz').text("Question " + (index + 1) + "/" + questions.length);
+  else{
+    index ++
+    $('#h4-quiz').text("Question" + (index+1) + "/8");
     $('.card-text').text(questions[index]['question']);
-    $('#img-clue').attr("src", "/images/cat.jpg");
+    $('#img-clue').attr("src", "/images/cat.jpg"); 
     $('#img-clue').hide();
     // tar bort den gamla timern och skapar en ny
-    clearTimeout(timerId);
+    clearTimeout(timerId); 
     startTimer();
   }
 };
@@ -78,10 +78,9 @@ function checkAnswer(event) {
       answer: questions[index]['answer']
     }
     answers.push(right)
-
-    printQuestion()
-
-  }
+    printQuestion() 
+    
+    }
 };
 
 function startTimer() {
@@ -100,7 +99,7 @@ function startTimer() {
 
       clearTimeout(timerId);
       printQuestion()
-    }
+    } 
     else {
       // visar bild
       if (timeLeft == 150) {
@@ -109,7 +108,7 @@ function startTimer() {
       $('#timer').text(timeLeft / 10 + ' seconds remaining');
       timeLeft--;
     }
-    return timerId
+  return timerId
   }
 }
 
