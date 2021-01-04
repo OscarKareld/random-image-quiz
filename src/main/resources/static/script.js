@@ -1,15 +1,20 @@
-// blir alltid samma spel som körs
-// känns dumt att ha massa gobala variabler...
+// blir alltid samma spel som körs... :(
+// Språk? ENGELSKA eller? 
+// TODO: Skicka highscore till API:t, som i sin tur kommunicerar med DB 
+// känns dumt att ha massa gobala variabler... 
 var questions
 var index = -1
 var timerId = 0
 var answers = []
+var timeLeft = -1
 
 $(document).ready(function () { //denna körs varje gång en sida laddas
   $('#result-page').hide();
+
   // hämta svårighetsgrad
   var difficulty = window.location.pathname.replace("/quiz/", "")
   console.log(difficulty)
+
   // hämtar frågorna
   $.ajax({
     method: "GET",
@@ -25,9 +30,9 @@ $(document).ready(function () { //denna körs varje gång en sida laddas
     })
 });
 
-
 function printQuestion() {
-  if (index == 9) { // när vi kommit till sista frågan avbryter vi
+  // när vi kommit till sista frågan avbryter vi
+  if (index == 9) {
     clearTimeout(timerId);
     showResult();
   }
@@ -51,18 +56,25 @@ $("#question-form").submit(checkAnswer)
 $("#name-form").submit(saveToScoreboard)
 
 function checkAnswer(event) {
-  event.preventDefault() // den gör så att saker funkar, fattar inte riktigt hur dock...
+  event.preventDefault() // den gör så att saker funkar 
+  var points = timeLeft;
 
   var answer = $("#answer_input").val(); // hämtar vårt svar
   console.log(questions[index]['answer'])
-
-  $("#answer").val('') // tömmer input
+  $("#answer_input").val('') // tömmer input
 
   if (answer == questions[index]['answer']) {
+    // räknar ut poäng
+    if (points > 145) {
+      points = points * points / 90;
+    }
+    else {
+      points = points * points / 180;
+    }
     // sparar resultat
     var right = {
       question: questions[index]['question'],
-      player_points: 200,
+      player_points: points,
       answer: questions[index]['answer']
     }
     answers.push(right)
@@ -73,8 +85,8 @@ function checkAnswer(event) {
 };
 
 function startTimer() {
-  var timeLeft = 30;
-  timerId = setInterval(countdown, 1000);
+  var timeLeft = 300;
+  timerId = setInterval(countdown, 100);
 
   function countdown() {
     if (timeLeft == -1) {
@@ -90,10 +102,11 @@ function startTimer() {
       printQuestion()
     }
     else {
-      if (timeLeft == 15) {
+      // visar bild
+      if (timeLeft == 150) {
         $('#img-clue').show();
       }
-      $('#timer').text(timeLeft + ' seconds remaining');
+      $('#timer').text(timeLeft / 10 + ' seconds remaining');
       timeLeft--;
     }
     return timerId
@@ -105,10 +118,13 @@ function showResult() {
   $('#result-page').show();
   console.log("showresult")
 
+  var points = countPoints()
+  $('#total-score').html("Your score: " + points);
+
   for (i = 0; i < 10; i++) {
     var item = $(document.createElement('li'));
     $(item).attr("class", "list-group-item");
-    $(item).html("Fråga: " + answers[i]['question'] + "<br> Svar: " + answers[i]['answer']);
+    $(item).html("Question: " + answers[i]['question'] + "<br> Answer: " + answers[i]['answer'] + "<br> Points: " + answers[i]['player_points']);
     $(item).appendTo(".result-board");
   };
 
@@ -116,12 +132,24 @@ function showResult() {
   $("#play-again > a").attr("href", "/quiz/" + difficulty)
 };
 
-function saveToScoreboard(){
+function countPoints() {
+  var points = 0
+  for (i = 0; i < 10; i++) {
+    points = points + answers[i]['player_points']
+  }
+  return points
+}
+
+
+function saveToScoreboard(event) {
+  event.preventDefault() // den gör så att saker funkar 
   var name = $("#name_input").val();
+  var difficulty = window.location.pathname.replace("/quiz/", "")
   var highscore = {
-    name: answers
+    "name": name, "score": countPoints(), "difficulty": difficulty
   };
-  console.log(highscore)
+  console.log(highscore);
+  location.replace("http://localhost:8080/scoreboard")
 
 }
 
