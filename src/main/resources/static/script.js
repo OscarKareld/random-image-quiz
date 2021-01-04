@@ -39,7 +39,7 @@ function printQuestion() {
 
   else{
     index ++
-    $('#h4-quiz').text("Question" + (index+1) + "/8");
+    $('#h4-quiz').text("Question" + (index+1) + "/" + questions.length);
     $('.card-text').text(questions[index]['question']);
     $('#img-clue').attr("src", "/images/cat.jpg"); 
     $('#img-clue').hide();
