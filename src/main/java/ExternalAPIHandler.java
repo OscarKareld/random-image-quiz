@@ -59,15 +59,15 @@ public class ExternalAPIHandler {
             }
             if (easy.size() == 10) {
                 queueEasy.addLast(easy);
-                easy.clear();
+                easy = new ArrayList<>();
                 System.out.println("Easy game added to queue");
             } else if (medium.size() == 10) {
                 queueMedium.addLast(medium);
-                medium.clear();
+                medium = new ArrayList<>();
                 System.out.println("Medium game added to queue");
             } else if (hard.size() == 10) {
                 queueDifficult.addLast(hard);
-                hard.clear();
+                hard = new ArrayList<>();
                 System.out.println("Hard game added to queue");
             }
         } //TODO: La till den här igen för att effektivisera hämtningen, men har för mig att det fanns en bra anledning till att inte ha den.

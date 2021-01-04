@@ -54,6 +54,7 @@ public class DatabaseManager {
             System.out.println("addScoreQuery: " + addScoreQuery);
 
             statement.executeQuery(addScoreQuery);
+            connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -78,11 +79,9 @@ public class DatabaseManager {
                 score.setDifficulty(results.getString("difficulty"));
                 highScoreList.add(score);
                 System.out.println(score.getUserNickName());
+                System.out.println("points: " + score.getPoints());
             }
-
-
-
-
+            connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
