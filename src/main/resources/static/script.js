@@ -39,7 +39,7 @@ function printQuestion() {
 
   else{
     index ++
-    $('#h4-quiz').text("Question" + (index+1) + "/" + questions.length);
+    $('#h4-quiz').text("Question " + (index+1) + "/" + questions.length);
     $('.card-text').text(questions[index]['question']);
     $('#img-clue').attr("src", "/images/cat.jpg"); 
     $('#img-clue').hide();
@@ -105,7 +105,7 @@ function startTimer() {
       if (timeLeft == 150) {
         $('#img-clue').show();
       }
-      $('#timer').text(timeLeft / 10 + ' seconds remaining');
+      $('#timer').text((timeLeft / 10) + ' seconds remaining');
       timeLeft--;
     }
   return timerId
