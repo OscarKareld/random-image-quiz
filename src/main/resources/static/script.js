@@ -115,7 +115,6 @@ function startTimer() {
 function showResult() {
   $('#quiz-page').hide();
   $('#result-page').show();
-  console.log("showresult")
 
   var points = countPoints()
   $('#total-score').html("Your score: " + points);
