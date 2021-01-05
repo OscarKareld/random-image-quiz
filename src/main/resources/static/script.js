@@ -56,7 +56,7 @@ function checkAnswer(event) {
   event.preventDefault() // den gör så att saker funkar 
   var points = (timeLeft * 10);
 
-  var answer = $("#answer_input").val().toLowerCase().replace(/[^a-zA-Z0-9', ]/g, ""); // hämtar spelarens svar   
+  var answer = $("#answer_input").val().toLowerCase().replace(/[^a-z0-9', ]/g, ""); // hämtar spelarens svar   
 
   console.log(questions[index]['answer'])
   $("#answer_input").val('') // tömmer input
