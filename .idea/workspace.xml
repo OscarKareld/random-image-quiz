@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random-image-quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/random-image-quiz.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/JServiceObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JServiceObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/QuestionCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/QuestionCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RunServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Score.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +119,13 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1609832920315</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="bättre svar">
+      <created>1609835070402</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1609835070403</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,6 +145,7 @@
     <MESSAGE value="gitignore fil" />
     <MESSAGE value="gitignore fil flyttad" />
     <MESSAGE value="fixat så att det kommer nya spel" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixat så att det kommer nya spel" />
+    <MESSAGE value="bättre svar" />
+    <option name="LAST_COMMIT_MESSAGE" value="bättre svar" />
   </component>
 </project>

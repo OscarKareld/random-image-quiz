@@ -1,3 +1,6 @@
+
+
+
 public class JServiceObject {
     private String className = this.getClass().getName();
     private String id;

@@ -1,5 +1,11 @@
 import java.sql.Date;
-
+/**
+ * Teh score keeps track of a score connected to one game played by one person.
+ * it stores the name, date, difficulty and nbr of points.
+ * @author  Oscar Kareld
+ * @version 1.0
+ *
+ */
 public class Score {
     private String className = this.getClass().getName();
     private String userNickName;

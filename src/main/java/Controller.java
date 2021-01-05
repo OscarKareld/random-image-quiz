@@ -1,7 +1,11 @@
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-
+/**
+ * Connects the database manager to the ExternalAPIHandler and the RunServer, the controller of the application
+ * @author Hanna My Jansson, Oscar Kareld
+ * @version 1.0
+ */
 public class Controller {
     private String className = this.getClass().getName();
     private DatabaseManager databaseManager;

@@ -1,3 +1,10 @@
+/**
+ * The question card contains all the info regarding the questions, including the answer, the difficulty, the image
+ * @author  Oscar Kareld
+ * @version 1.0
+ *
+ */
+
 public class QuestionCard {
     private String className = this.getClass().getName();
     private String id;

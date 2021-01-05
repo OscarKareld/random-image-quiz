@@ -12,6 +12,13 @@ import java.util.ArrayList;
 //response.redirect("/bar");
 //redirect.get("/fromPath", "/toPath");
 
+
+/**
+ * This is the serverpart that holds the connection and make it possible to make requests.
+ * @author  Oscar Kareld, Hanna My Jansson, Hanna Nilsson, Rebecka Persson
+ * @version 1.0
+ *
+ */
 public class RunServer {
 
     public static void main(String[] args) {
