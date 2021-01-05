@@ -6,7 +6,11 @@ import kong.unirest.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+/**
+ * Creates the questions to the API by connecting to two external APIs, pixabay and jservice.
+ * @author Hanna My Jansson, Oscar Kareld
+ * @version 1.0
+ */
 public class ExternalAPIHandler {
     private String className = this.getClass().getName();
     private static final int nbrOfClues = 100;
@@ -15,6 +19,14 @@ public class ExternalAPIHandler {
     private LinkedList<ArrayList<QuestionCard>> queueMedium = new LinkedList();
     private LinkedList<ArrayList<QuestionCard>> queueDifficult = new LinkedList();
 
+    ArrayList<QuestionCard> easy = new ArrayList<>();
+    ArrayList<QuestionCard> medium = new ArrayList<>();
+    ArrayList<QuestionCard> hard = new ArrayList<>();
+
+    /**
+     * This methode calls jservice to get 100 questions and then sort it into games with 10 questions each
+     * depending on the difficulty level. It ads it to the three queues. It also calls the get picture and cleanUpAnswer for every question.
+     */
     public void createGames() {
 
         HttpResponse<JsonNode> response = Unirest.get(API_URL)
@@ -25,15 +37,16 @@ public class ExternalAPIHandler {
         System.out.println(jsonNode);
         JSONArray jsonArray = jsonNode.getArray();
 
-        ArrayList<QuestionCard> easy = new ArrayList<>();
-        ArrayList<QuestionCard> medium = new ArrayList<>();
-        ArrayList<QuestionCard> hard = new ArrayList<>();
+        easy = new ArrayList<>();
+        medium = new ArrayList<>();
+        hard = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             if (!jsonObject.isNull("value")) {
                 QuestionCard questionCard = new QuestionCard();
                 String answer = jsonObject.getString("answer");
+                answer = cleanUpAnswer(answer);
                 // TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
                 String image = getPicture(answer);
 
@@ -70,28 +83,26 @@ public class ExternalAPIHandler {
                 hard = new ArrayList<>();
                 System.out.println("Hard game added to queue");
             }
+
+
         }
     }
 
-    //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
-    public static void main(String[] args) {
-        ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
-        externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
-//        externalAPIHandler.getPicture("blue whale water");
 
-    }
-
-    //
-    private String getPicture(String searchWord) {
-
-        HttpResponse<JsonNode> response;
-        String pictureURL = null;
+    /**
+     * Removes any unwanted parts of strings. It removes parenthesis ands it content, <> and its content, quotation marks and backslash
+     * @param searchWord the string you want to clean up
+     * @return the cleaned string
+     */
+    private String cleanUpAnswer(String searchWord){
         String searchString = searchWord;
-        System.out.println(searchString);
+        System.out.println("dirty: " + searchString);
+        searchString = searchString.toLowerCase();
         while (searchString.contains("(")) {
             int index1 = searchString.indexOf("(");
             int index2 = searchString.indexOf(")");
             StringBuilder sb = new StringBuilder(searchString);
+
             if (index2 != -1) {
                 sb.delete(index1, index2 + 1);
                 searchString = sb.toString();
@@ -119,6 +130,13 @@ public class ExternalAPIHandler {
             searchString = sb.toString();
 
         }
+        while (searchString.contains("\'")) {
+            int index1 = searchString.indexOf("\'");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
         while (searchString.contains("\\")) {
             int index1 = searchString.indexOf("\\");
             StringBuilder sb = new StringBuilder(searchString);
@@ -126,6 +144,21 @@ public class ExternalAPIHandler {
             searchString = sb.toString();
 
         }
+        System.out.println("cleaned " + searchString);
+        return searchString;
+    }
+
+    /**
+     * Search for pictures for every question, if it does not find it for the whole string it will divide it to smaller parts, first word by word then even smaller.
+     * @param searchWord the word thet you whant to sersh for a matching picture to.
+     * @return the url as a string with the picture asked for.
+     */
+    private String getPicture(String searchWord) {
+
+        HttpResponse<JsonNode> response;
+        String pictureURL = null;
+        String searchString = searchWord;
+        System.out.println(searchString);
         if (searchString.startsWith("a ") || searchString.startsWith("A ")) {
             searchString = searchString.substring(2);
         }
@@ -238,6 +271,11 @@ public class ExternalAPIHandler {
         return pictureURL;
     }
 
+    /**
+     * Gets a game from the correct queue and returns it
+     * @param difficulty the difficulty of the questions wanted, there are three: easy, medium, difficult
+     * @return an Arraylist with 10 questioncards with the difficulty asked for.
+     */
     public ArrayList<QuestionCard> getGameWithQuestionCards(Difficulty difficulty) {
         ArrayList<QuestionCard> game = null;
 
@@ -259,11 +297,25 @@ public class ExternalAPIHandler {
         return game;
     }
 
+
+    /**
+     * This thread is used when connecting to the apis to get questions and pictures to speed up our response time as a API
+     */
     private class ApiThread extends Thread {
         public void run() {
             while (queueEasy.size() <= 1 || queueMedium.size() <= 1 || queueDifficult.size() <= 1) {
                 createGames();
             }
         }
+    }
+
+
+    //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
+    public static void main(String[] args) {
+        ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
+        // externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
+//        externalAPIHandler.getPicture("blue whale water");
+        externalAPIHandler.cleanUpAnswer("ain't");
+
     }
 }

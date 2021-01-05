@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="gitignore fil flyttad">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random-image-quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/random-image-quiz.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" afterDir="false" />
+    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/RunServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunServer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +106,31 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1607699859496</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="fixat så att det kommer nya spel">
+      <created>1609832920315</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1609832920315</updated>
+    </task>
+    <task id="LOCAL−00004" summary="bättre svar">
+      <created>1609835070402</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1609835070403</updated>
+    </task>
+    <task id="LOCAL−00005" summary="kommenterat lite">
+      <created>1609839655441</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1609839655441</updated>
+    </task>
+    <task id="LOCAL−00006" summary="tagit bort ' ur svaret">
+      <created>1609841413644</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1609841413644</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,6 +149,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gitignore fil" />
     <MESSAGE value="gitignore fil flyttad" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore fil flyttad" />
+    <MESSAGE value="fixat så att det kommer nya spel" />
+    <MESSAGE value="bättre svar" />
+    <MESSAGE value="kommenterat lite" />
+    <MESSAGE value="tagit bort ' ur svaret" />
+    <option name="LAST_COMMIT_MESSAGE" value="tagit bort ' ur svaret" />
   </component>
 </project>

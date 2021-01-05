@@ -12,6 +12,14 @@ import java.util.ArrayList;
 //response.redirect("/bar");
 //redirect.get("/fromPath", "/toPath");
 
+/**
+ * This is the serverpart that holds the connection and make it possible to make
+ * requests.
+ * 
+ * @author Oscar Kareld, Hanna My Jansson, Hanna Nilsson, Rebecka Persson
+ * @version 1.0
+ *
+ */
 public class RunServer {
 
     public static void main(String[] args) {
@@ -51,7 +59,7 @@ public class RunServer {
             return json;
         });
 
-        get("/highscore/:diff", (req, res) -> { // http://localhost:8080/highscore/easy?amount=1
+        get("/highscore", (req, res) -> { // http://localhost:8080/highscore?amount=1
             String stringAmount = req.queryMap().value("amount");
             int amount;
             if (stringAmount == null) {
@@ -59,17 +67,22 @@ public class RunServer {
             } else {
                 amount = Integer.parseInt(stringAmount);
             }
-            Difficulty difficulty = Difficulty.valueOf(req.params(":diff"));
-            ArrayList<Score> highScore = controller.getHighScore(difficulty, amount);
+            ArrayList<Score> highScoreEasy = controller.getHighScore(Difficulty.easy, amount);
+            ArrayList<Score> highScoreMedium = controller.getHighScore(Difficulty.medium, amount);
+            ArrayList<Score> highScoreDifficult = controller.getHighScore(Difficulty.difficult, amount);
+            ArrayList<Score>[] lista = new ArrayList[3];
+            lista[0] = highScoreEasy;
+            lista[1] = highScoreMedium;
+            lista[2] = highScoreDifficult;
             Gson gson = new Gson();
-            String json = gson.toJson(highScore);
+            String json = gson.toJson(lista);
             res.header("Content-Type", "application/json");
             return json;
         });
 
         post("/score", (req, res) -> {
             String json = req.body();
-            //System.out.println(json);
+            // System.out.println(json);
             Gson gson = new Gson();
             Score score = gson.fromJson(json, Score.class); // TODO: Kolla med Hanna och Rebecka hur deras JSOn-objekt
                                                             // är konstruerat. Vi ändrade Date från Date.SQL till String
