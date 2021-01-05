@@ -50,7 +50,7 @@ public class RunServer {
             return json;
         });
 
-        get("/highscore/:diff", (req, res) -> { //http://localhost:8080/highscore/easy?amount=1
+        get("/highscore/:diff", (req, res) -> { //http://localhost:8080/highscore/easy?amount=1 //TODO: Borde ändras till "highscores" eftersom det är en samling
             String stringAmount = req.queryMap().value("amount");
             int amount;
             if (stringAmount == null) {
