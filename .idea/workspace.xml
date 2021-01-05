@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="gitignore fil flyttad">
+    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/random-image-quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/random-image-quiz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ExternalAPIHandler">
+  <component name="RunManager" selected="Application.RunServer">
     <configuration name="ExternalAPIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ExternalAPIHandler" />
       <module name="random-image-quiz" />
@@ -79,8 +80,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ExternalAPIHandler" />
         <item itemvalue="Application.RunServer" />
+        <item itemvalue="Application.ExternalAPIHandler" />
         <item itemvalue="Application.OscarsTest" />
       </list>
     </recent_temporary>
@@ -108,7 +109,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1607699859496</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="fixat så att det kommer nya spel">
+      <created>1609832920315</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1609832920315</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,6 +134,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gitignore fil" />
     <MESSAGE value="gitignore fil flyttad" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore fil flyttad" />
+    <MESSAGE value="fixat så att det kommer nya spel" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixat så att det kommer nya spel" />
   </component>
 </project>

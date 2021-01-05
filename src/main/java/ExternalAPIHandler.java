@@ -34,6 +34,7 @@ public class ExternalAPIHandler {
             if (!jsonObject.isNull("value")) {
                 QuestionCard questionCard = new QuestionCard();
                 String answer = jsonObject.getString("answer");
+                answer = cleanUpAnswer(answer);
                 // TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
                 String image = getPicture(answer);
 
@@ -76,22 +77,21 @@ public class ExternalAPIHandler {
     //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
     public static void main(String[] args) {
         ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
-        externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
+       // externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
 //        externalAPIHandler.getPicture("blue whale water");
+        externalAPIHandler.cleanUpAnswer("hej \"h\" HEJ då");
 
     }
 
-    //
-    private String getPicture(String searchWord) {
-
-        HttpResponse<JsonNode> response;
-        String pictureURL = null;
+    private String cleanUpAnswer(String searchWord){
         String searchString = searchWord;
-        System.out.println(searchString);
+        System.out.println("dirty: " + searchString);
+        searchString = searchString.toLowerCase();
         while (searchString.contains("(")) {
             int index1 = searchString.indexOf("(");
             int index2 = searchString.indexOf(")");
             StringBuilder sb = new StringBuilder(searchString);
+
             if (index2 != -1) {
                 sb.delete(index1, index2 + 1);
                 searchString = sb.toString();
@@ -126,6 +126,17 @@ public class ExternalAPIHandler {
             searchString = sb.toString();
 
         }
+        System.out.println("cleaned " + searchString);
+        return searchString;
+    }
+
+    //
+    private String getPicture(String searchWord) {
+
+        HttpResponse<JsonNode> response;
+        String pictureURL = null;
+        String searchString = searchWord;
+        System.out.println(searchString);
         if (searchString.startsWith("a ") || searchString.startsWith("A ")) {
             searchString = searchString.substring(2);
         }
