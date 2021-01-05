@@ -243,12 +243,13 @@ public class ExternalAPIHandler {
 
 
         if (difficulty == Difficulty.easy && !queueEasy.isEmpty()) {
-            game = queueEasy.getFirst();
+            game = queueEasy.pollFirst();
+
             System.out.println("söker inte");
         } else if (difficulty == Difficulty.medium && !queueMedium.isEmpty()) {
-            game = queueMedium.getFirst();
+            game = queueMedium.pollFirst();
         } else if (difficulty == Difficulty.difficult && !queueDifficult.isEmpty()) {
-            game = queueDifficult.getFirst();
+            game = queueDifficult.pollFirst();
 
         }
         if (queueEasy.size() <= 1 || queueMedium.size() <= 1 || queueDifficult.size() <= 1) {
