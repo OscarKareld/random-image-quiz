@@ -24,7 +24,6 @@ public class RunServer {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        // controller.setup();
         port(8080);
         staticFiles.location("/static");
 

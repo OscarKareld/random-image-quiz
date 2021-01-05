@@ -9,6 +9,7 @@ var answers = []
 var timeLeft = -1 // varför -1? 
 
 $('.start-quiz').click(startQuiz());
+$('.scoreboard-page').click(showScoreboard());
 
 function startQuiz() { //denna körs när ett spel startas 
   $('#result-page').hide();
@@ -40,7 +41,7 @@ function printQuestion() {
     index++
     $('#h4-quiz').text("Question " + (index + 1) + "/" + questions.length);
     $('.card-text').text(questions[index]['question']);
-    $('#img-clue').attr(questions[index]['image']);
+    $('#img-clue').attr("src", questions[index]['image']);
     $('#img-clue').hide();
     // tar bort den gamla timern och skapar en ny
     clearTimeout(timerId);
@@ -55,7 +56,7 @@ function checkAnswer(event) {
   event.preventDefault() // den gör så att saker funkar 
   var points = (timeLeft * 10);
 
-  var answer = $("#answer_input").val().toLowerCase(); // hämtar vårt svar och gör om till småbokstäver och ta bort 
+  var answer = $("#answer_input").val().toLowerCase().replace(/[^a-z0-9', ]/g, ""); // hämtar spelarens svar   
 
   console.log(questions[index]['answer'])
   $("#answer_input").val('') // tömmer input
@@ -162,9 +163,10 @@ function saveToScoreboard(event) {
 }
 
 function showScoreboard() {
+  console.log("Hej!")
   $.ajax({
     method: "GET",
-    url: "http://localhost:8080/highscore/easy?amount=10",
+    url: "http://localhost:8080/highscore?amount=1",
     headers: { "Accept": "application/json" }
   })
     .done(function (data) {

@@ -23,8 +23,16 @@ header, nav, main, footer{
         "footer" 
 }
 
-/* HEADER / NAVIGATION*/
+/*ALL*/
+.center-text{
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: rgba(241, 242, 243, 0.945);
+}
 
+/* HEADER / NAVIGATION*/
 nav{
     grid-area: nav;
 }
@@ -39,7 +47,6 @@ nav{
 } 
 
 /* MAIN */
-
 main{
     grid-area: main;
     background-color: rgba(241, 242, 243, 0.945);
@@ -51,6 +58,7 @@ main{
     background-color:  rgb(57, 153, 177);
     color: white; /* fixa hoover */
     margin: 10px;
+    width: 80px; 
 } 
 .carousel{
     margin:30px;
@@ -60,15 +68,9 @@ main{
 }
 
 /* QUIZ */
-
 .question{
     justify-content: center;
 }
-
-.center-text{
-    text-align: center;
-}
-
 #submit_answer{
     margin-left:0px;
 }
