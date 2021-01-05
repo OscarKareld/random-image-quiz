@@ -12,10 +12,11 @@ import java.util.ArrayList;
 //response.redirect("/bar");
 //redirect.get("/fromPath", "/toPath");
 
-
 /**
- * This is the serverpart that holds the connection and make it possible to make requests.
- * @author  Oscar Kareld, Hanna My Jansson, Hanna Nilsson, Rebecka Persson
+ * This is the serverpart that holds the connection and make it possible to make
+ * requests.
+ * 
+ * @author Oscar Kareld, Hanna My Jansson, Hanna Nilsson, Rebecka Persson
  * @version 1.0
  *
  */
@@ -23,6 +24,7 @@ public class RunServer {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
+        // controller.setup();
         port(8080);
         staticFiles.location("/static");
 
@@ -43,27 +45,26 @@ public class RunServer {
         });
 
         post("/save", (req, res) -> {
-            //System.out.println(request.body()); // se vad post skickar oss
+            // System.out.println(request.body()); // se vad post skickar oss
             return null;
         });
         get("/game/:diff", (req, res) -> {
             System.out.println("här");
             Difficulty difficulty = Difficulty.valueOf(req.params(":diff").toString());
             System.out.println("här");
-            ArrayList<QuestionCard> game =  controller.getQuestionCards(difficulty);
+            ArrayList<QuestionCard> game = controller.getQuestionCards(difficulty);
             Gson gson = new Gson();
-            String json =  gson.toJson(game);
+            String json = gson.toJson(game);
             res.header("Content-Type", "application/json");
             return json;
         });
 
-        get("/highscore", (req, res) -> { //http://localhost:8080/highscore?amount=1
+        get("/highscore", (req, res) -> { // http://localhost:8080/highscore?amount=1
             String stringAmount = req.queryMap().value("amount");
             int amount;
             if (stringAmount == null) {
                 amount = 100;
-            }
-            else {
+            } else {
                 amount = Integer.parseInt(stringAmount);
             }
             ArrayList<Score> highScoreEasy = controller.getHighScore(Difficulty.easy, amount);
@@ -74,15 +75,18 @@ public class RunServer {
             lista[1] = highScoreMedium;
             lista[2] = highScoreDifficult;
             Gson gson = new Gson();
-            String json =  gson.toJson(lista);
+            String json = gson.toJson(lista);
             res.header("Content-Type", "application/json");
             return json;
         });
 
         post("/score", (req, res) -> {
             String json = req.body();
+            // System.out.println(json);
             Gson gson = new Gson();
-            Score score = gson.fromJson(json, Score.class); //TODO: Kolla med Hanna och Rebecka hur deras JSOn-objekt är konstruerat. Vi ändrade Date från Date.SQL till String i Score.
+            Score score = gson.fromJson(json, Score.class); // TODO: Kolla med Hanna och Rebecka hur deras JSOn-objekt
+                                                            // är konstruerat. Vi ändrade Date från Date.SQL till String
+                                                            // i Score.
             controller.addScore(score);
             return json;
         });
