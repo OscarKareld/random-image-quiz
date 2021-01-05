@@ -57,7 +57,7 @@ public class RunServer {
             return json;
         });
 
-        get("/highscore/:diff", (req, res) -> { //http://localhost:8080/highscore/easy?amount=1
+        get("/highscore", (req, res) -> { //http://localhost:8080/highscore?amount=1
             String stringAmount = req.queryMap().value("amount");
             int amount;
             if (stringAmount == null) {
@@ -66,10 +66,18 @@ public class RunServer {
             else {
                 amount = Integer.parseInt(stringAmount);
             }
-            Difficulty difficulty = Difficulty.valueOf(req.params(":diff"));
-            ArrayList<Score> highScore = controller.getHighScore(difficulty, amount);
+            ArrayList<Score> highScoreEasy = controller.getHighScore(Difficulty.easy, amount);
+            ArrayList<Score> highScoreMedium = controller.getHighScore(Difficulty.medium, amount);
+            ArrayList<Score> highScoreDifficult = controller.getHighScore(Difficulty.difficult, amount);
+
             Gson gson = new Gson();
-            String json =  gson.toJson(highScore);
+            String jsonEasy =  gson.toJson(highScoreEasy);
+            String jsonMedium =  gson.toJson(highScoreMedium);
+            String jsonDifficult =  gson.toJson(highScoreDifficult);
+            String[] json = new String[3];
+            json[0] = jsonEasy;
+            json[1] = jsonMedium;
+            json[2] = jsonDifficult;
             res.header("Content-Type", "application/json");
             return json;
         });

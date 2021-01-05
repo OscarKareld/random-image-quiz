@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="" />
+    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/RunServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunServer.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +124,13 @@
       <option name="presentableId" value="LOCAL−00005" />
       <updated>1609839655441</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL−00006" summary="tagit bort ' ur svaret">
+      <created>1609841413644</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1609841413644</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,6 +152,7 @@
     <MESSAGE value="fixat så att det kommer nya spel" />
     <MESSAGE value="bättre svar" />
     <MESSAGE value="kommenterat lite" />
-    <option name="LAST_COMMIT_MESSAGE" value="kommenterat lite" />
+    <MESSAGE value="tagit bort ' ur svaret" />
+    <option name="LAST_COMMIT_MESSAGE" value="tagit bort ' ur svaret" />
   </component>
 </project>
