@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.sql.Date;
 /**
  * Teh score keeps track of a score connected to one game played by one person.
@@ -6,7 +7,7 @@ import java.sql.Date;
  * @version 1.0
  *
  */
-public class Score {
+public class Score implements Serializable {
     private String className = this.getClass().getName();
     private String userNickName;
     private int points;

@@ -88,7 +88,7 @@ public class RunServer {
                                                             // är konstruerat. Vi ändrade Date från Date.SQL till String
                                                             // i Score.
             controller.addScore(score);
-            return json;
+            return "";
         });
     }
 }

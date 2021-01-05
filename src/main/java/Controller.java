@@ -9,22 +9,24 @@ import java.util.ArrayList;
 public class Controller {
     private String className = this.getClass().getName();
     private DatabaseManager databaseManager;
+    private FileManager fileManager;
     ExternalAPIHandler externalAPIHandler;
 
     public Controller() {
         databaseManager = new DatabaseManager();
         externalAPIHandler = new ExternalAPIHandler();
+        fileManager = new FileManager();
         externalAPIHandler.createGames();
     }
 
     //gets the highscore from the database
     public ArrayList<Score> getHighScore(Difficulty difficulty, int nbrOfScores) {
-        return databaseManager.getHighScore(difficulty, nbrOfScores);
+        return fileManager.getHighScore(difficulty, nbrOfScores);
     }
 
     //adds a score to the database
     public void addScore(Score score) {
-        databaseManager.addScore(score);
+        fileManager.addScore(score);
     }
 
 
