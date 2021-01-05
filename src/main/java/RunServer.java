@@ -31,11 +31,7 @@ public class RunServer {
             return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/api.html"));
         });
 
-        get("/result", (req, res) -> {
-            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/result.html"));
-        });
-
-        get("/quiz", (req, res) -> {
+        get("/quiz/:diff", (req, res) -> {
             return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/quiz.html"));
         });
 
@@ -54,9 +50,17 @@ public class RunServer {
             return json;
         });
 
-        get("/highscore/:diff", (req, res) -> {
-            Difficulty difficulty = Difficulty.valueOf(req.params(":diff").toString());
-            ArrayList<Score> highScore = controller.getHighScore(difficulty);
+        get("/highscore/:diff", (req, res) -> { //http://localhost:8080/highscore/easy?amount=1
+            String stringAmount = req.queryMap().value("amount");
+            int amount;
+            if (stringAmount == null) {
+                amount = 100;
+            }
+            else {
+                amount = Integer.parseInt(stringAmount);
+            }
+            Difficulty difficulty = Difficulty.valueOf(req.params(":diff"));
+            ArrayList<Score> highScore = controller.getHighScore(difficulty, amount);
             Gson gson = new Gson();
             String json =  gson.toJson(highScore);
             res.header("Content-Type", "application/json");
@@ -66,7 +70,7 @@ public class RunServer {
         post("/score", (req, res) -> {
             String json = req.body();
             Gson gson = new Gson();
-            Score score = gson.fromJson(json, Score.class);
+            Score score = gson.fromJson(json, Score.class); //TODO: Kolla med Hanna och Rebecka hur deras JSOn-objekt är konstruerat. Vi ändrade Date från Date.SQL till String i Score.
             controller.addScore(score);
             return json;
         });

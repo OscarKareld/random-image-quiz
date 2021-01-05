@@ -15,7 +15,7 @@ public class ExternalAPIHandler {
     private LinkedList<ArrayList<QuestionCard>> queueMedium = new LinkedList();
     private LinkedList<ArrayList<QuestionCard>> queueDifficult = new LinkedList();
 
-    private void createGames() {
+    public void createGames() {
 
         HttpResponse<JsonNode> response = Unirest.get(API_URL)
                 .queryString("count", nbrOfClues)
@@ -34,18 +34,21 @@ public class ExternalAPIHandler {
             if (!jsonObject.isNull("value")) {
                 QuestionCard questionCard = new QuestionCard();
                 String answer = jsonObject.getString("answer");
+                // TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
                 String image = getPicture(answer);
 
                 if (image == null) {
-                    System.out.println("Image is null" + 1);
+                    System.out.println("Image is null. i = " + i);
                     continue;
                 }
+
+
                 int difficulty = jsonObject.getInt("value");
                 questionCard.setId(jsonObject.getString("id"));
                 questionCard.setAnswer(answer);
                 questionCard.setQuestion(jsonObject.getString("question"));
                 questionCard.setDifficulty(difficulty);
-                questionCard.setImage(image); //TODO Hehe den här kaosar
+                questionCard.setImage(image); //TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
                 if (difficulty > 0 && difficulty < 350) {
                     easy.add(questionCard);
                 } else if (difficulty > 350 && difficulty < 650) {
@@ -73,7 +76,7 @@ public class ExternalAPIHandler {
     //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
     public static void main(String[] args) {
         ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
-        externalAPIHandler.createGames();
+        externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
 //        externalAPIHandler.getPicture("blue whale water");
 
     }
@@ -248,19 +251,18 @@ public class ExternalAPIHandler {
             game = queueDifficult.getFirst();
 
         }
-        while (game == null) {
-            createGames();
-            if (difficulty == Difficulty.easy && !queueEasy.isEmpty()) {
-                game = queueEasy.getFirst();
-                System.out.println("har sökt");
-            } else if (difficulty == Difficulty.medium && !queueMedium.isEmpty()) {
-                game = queueMedium.getFirst();
-            } else if (difficulty == Difficulty.difficult && !queueDifficult.isEmpty()) {
-                game = queueDifficult.getFirst();
+        if (queueEasy.size() <= 1 || queueMedium.size() <= 1 || queueDifficult.size() <= 1) {
+            ApiThread apiThread = new ApiThread();
+            apiThread.start();
+        }
+        return game;
+    }
 
+    private class ApiThread extends Thread {
+        public void run() {
+            while (queueEasy.size() <= 1 || queueMedium.size() <= 1 || queueDifficult.size() <= 1) {
+                createGames();
             }
         }
-        System.out.println("strolek: " + game.size() + "\n innehåll: " + game.toString());
-        return game;
     }
 }
