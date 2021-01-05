@@ -1,50 +1,37 @@
-var questions;
-var index = 0;
+$(document).ready(function () {
 
-$(document).ready(function() {
+    var obj1 = {
+        "question": "a question",
+        "user_answer": "right",
+        "answer": "the right answer"
+    };
 
-    var question1 = {}
-    question1.difficulty = "Easy";
-    question1.question = "Vad heter Hanna?";
-    question1.answer = "Hanna";
-    question1.img = "/images/cat.jpg"; 
+    var obj2 = {
+        "question": "another question",
+        "user_answer": "wrong",
+        "answer": "hello"
+    };
 
-    var question2 = {}
-    question2.difficulty = "Easy";
-    question2.question = "Vad heter Rebecka?";
-    question2.answer = "Rebecka";
-    question2.img = "/images/cat.jpg";
+    var obj3 = {
+        "question": "last question",
+        "user_answer": "right",
+        "answer": "bye"
+    };
 
-    questions = [question1, question2];
-    
-    printQuestion(questions[index]); 
+
+    answers = [obj1, obj2, obj3];
+    printResult(answers)
+
 });
 
-function printQuestion(question){
+function printResult(answers) {
+    for (i = 0; i < 3; i++) {
+        console.log("hej");
+        console.log(answers[i]['question']);
 
-    $('#h2-quiz').text(question['difficulty'] + " Quiz");
-    $('.card-text').text(question['question']);
-    $('#img-clue').attr("src", question['img']); 
-};
-
-$("#question-form").submit(onSubmit)
-
-function onSubmit(event){
-    event.preventDefault()
-    console.log("Det funka iaf")
-    var answer = $("input").val();
-    console.log(answer)
-    console.log(questions[index]['answer'])
-
-    if (answer == questions[index]['answer']) {
-        index ++
-        printQuestion(questions[index]) //function för att dölja svaret och visa grönt
-        
-    } 
-    else {
-        $('input:text').focus(
-            function(){
-                $(this).val('');
-            }); 
-    }
+        var item = $(document.createElement('li'));
+        $(item).attr("class", "list-group-item");
+        $(item).html(answers[i]['question'] + ": " + answers[i]['answer'] + answers[i]['user_answer']);
+        $(item).appendTo(".result-board");
+    };
 };
