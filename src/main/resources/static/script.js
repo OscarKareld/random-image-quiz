@@ -55,7 +55,7 @@ function checkAnswer(event) {
   event.preventDefault() // den gör så att saker funkar 
   var points = (timeLeft * 10);
 
-  var answer = $("#answer_input").val().toLowerCase(); // hämtar vårt svar och gör om till småbokstäver --> .toLowerCase()
+  var answer = $("#answer_input").val().toLowerCase(); // hämtar vårt svar och gör om till småbokstäver och ta bort 
 
   console.log(questions[index]['answer'])
   $("#answer_input").val('') // tömmer input
