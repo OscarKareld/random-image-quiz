@@ -1,20 +1,19 @@
-// blir alltid samma spel som körs... :(
-// Språk? ENGELSKA eller? 
-// TODO: Skicka highscore till API:t, som i sin tur kommunicerar med DB 
-// känns dumt att ha massa gobala variabler... 
+// blir alltid samma spel som körs... :( -- Hanna-My felsökning 
+// lower case
+// highscoresida
+// fixa css
 var questions
 var index = -1
 var timerId = 0
 var answers = []
-var timeLeft = -1
+var timeLeft = -1 // varför -1? 
 
-$(document).ready(function () { //denna körs varje gång en sida laddas
+$('.start-quiz').click(startQuiz());
+
+function startQuiz() { //denna körs när ett spel startas 
   $('#result-page').hide();
-
   // hämta svårighetsgrad
   var difficulty = window.location.pathname.replace("/quiz/", "")
-  console.log(difficulty)
-
   // hämtar frågorna
   $.ajax({
     method: "GET",
@@ -28,7 +27,7 @@ $(document).ready(function () { //denna körs varje gång en sida laddas
       $('#h2-quiz').text(difficulty + " Quiz");
       printQuestion(questions[index]);
     })
-});
+};
 
 function printQuestion() {
   // när vi kommit till sista frågan avbryter vi
@@ -37,14 +36,14 @@ function printQuestion() {
     showResult();
   }
 
-  else{
-    index ++
-    $('#h4-quiz').text("Question " + (index+1) + "/" + questions.length);
+  else {
+    index++
+    $('#h4-quiz').text("Question " + (index + 1) + "/" + questions.length);
     $('.card-text').text(questions[index]['question']);
-    $('#img-clue').attr("src", "/images/cat.jpg"); 
+    $('#img-clue').attr(questions[index]['image']);
     $('#img-clue').hide();
     // tar bort den gamla timern och skapar en ny
-    clearTimeout(timerId); 
+    clearTimeout(timerId);
     startTimer();
   }
 };
@@ -52,14 +51,12 @@ function printQuestion() {
 // när svaret ges körs checkAnswer
 $("#question-form").submit(checkAnswer)
 
-// när namnet skickas körs saveToScoreboard 
-$("#name-form").submit(saveToScoreboard)
-
 function checkAnswer(event) {
   event.preventDefault() // den gör så att saker funkar 
-  var points = timeLeft;
+  var points = (timeLeft * 10);
 
-  var answer = $("#answer_input").val(); // hämtar vårt svar
+  var answer = $("#answer_input").val().toLowerCase(); // hämtar vårt svar och gör om till småbokstäver --> .toLowerCase()
+
   console.log(questions[index]['answer'])
   $("#answer_input").val('') // tömmer input
 
@@ -74,18 +71,18 @@ function checkAnswer(event) {
     // sparar resultat
     var right = {
       question: questions[index]['question'],
-      player_points: points,
+      player_points: Math.round(points),
       answer: questions[index]['answer']
     }
     answers.push(right)
-    printQuestion() 
-    
-    }
+    printQuestion()
+
+  }
 };
 
 function startTimer() {
-  var timeLeft = 300;
-  timerId = setInterval(countdown, 100);
+  timeLeft = 30;
+  timerId = setInterval(countdown, 1000);
 
   function countdown() {
     if (timeLeft == -1) {
@@ -99,16 +96,15 @@ function startTimer() {
 
       clearTimeout(timerId);
       printQuestion()
-    } 
+    }
     else {
       // visar bild
-      if (timeLeft == 150) {
+      if (timeLeft == 15) {
         $('#img-clue').show();
       }
-      $('#timer').text((timeLeft / 10) + ' seconds remaining');
+      $('#timer').text(timeLeft + ' seconds remaining');
       timeLeft--;
     }
-  return timerId
   }
 }
 
@@ -128,7 +124,10 @@ function showResult() {
 
   var difficulty = window.location.pathname.replace("/quiz/", "")
   $("#play-again > a").attr("href", "/quiz/" + difficulty)
+
 };
+
+$("#name-form").submit(saveToScoreboard) // när namnet skickas körs saveToScoreboard 
 
 function countPoints() {
   var points = 0
@@ -138,16 +137,38 @@ function countPoints() {
   return points
 }
 
-
 function saveToScoreboard(event) {
-  event.preventDefault() // den gör så att saker funkar 
-  var name = $("#name_input").val();
-  var difficulty = window.location.pathname.replace("/quiz/", "")
-  var highscore = {
-    "name": name, "score": countPoints(), "difficulty": difficulty
-  };
-  console.log(highscore);
-  location.replace("http://localhost:8080/scoreboard")
+  event.preventDefault()
 
+  var score = {
+    "nickname": $("#name_input").val(),
+    "points": countPoints(),
+    "difficulty": window.location.pathname.replace("/quiz/", ""),
+  };
+  console.log(score);
+
+  $.ajax({
+    method: "POST",
+    url: 'http://localhost:8080/score',
+    data: JSON.stringify(score),
+    headers: { "Accept": "application/json" }
+  })
+    .done(function () {
+      console.log('Lagt till följande data:');
+      console.log(JSON.stringify(score));
+    });
+
+  //location.replace("http://localhost:8080/scoreboard")
 }
 
+function showScoreboard() {
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/highscore/easy?amount=10",
+    headers: { "Accept": "application/json" }
+  })
+    .done(function (data) {
+      console.log(data);
+      scoreboard = data;
+    })
+}
