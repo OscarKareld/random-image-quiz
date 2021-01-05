@@ -1,4 +1,60 @@
 {% extends "templates/base.html" %}
-{% block main %} 
-    <h2> Här visas poängtavlan </h2>
+{% block main %}
+<h2> Här visas poängtavlan </h2>
+<div class="row justify-content-center">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide w-50" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+                <div class="card">
+                    <a href="/scoreboard">
+                        <div class="card-header text-center">
+                            Scoreboard Easy
+                        </div>
+                    </a>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">1. Hanna</li>
+                        <li class="list-group-item">2. Hanna</li>
+                        <li class="list-group-item">3. Hanna</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <div class="card">
+                    <a href="/scoreboard">
+                        <div class="card-header text-center">
+                            Scoreboard Medium
+                        </div>
+                    </a>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">1. Hanna</li>
+                        <li class="list-group-item">2. Hanna</li>
+                        <li class="list-group-item">3. Hanna</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card">
+                    <a href="/scoreboard">
+                        <div class="card-header text-center">
+                            Scoreboard Difficult
+                        </div>
+                    </a>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">1. Hanna</li>
+                        <li class="list-group-item">2. Hanna</li>
+                        <li class="list-group-item">3. Hanna</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleDark" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleDark" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</div>
 {% endblock %}

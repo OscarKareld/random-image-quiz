@@ -1,6 +1,12 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Controls the communication with the database
+ * @author Hanna My Jansson, Oscar Kareld
+ * @version 1.0
+ */
+
 public class DatabaseManager {
     private String className = this.getClass().getName();
 

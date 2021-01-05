@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/RunServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunServer.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectId" id="1lN7x0rujqL9x8p5GAsOjHjIRq0" />
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.34414226" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\Desktop\MITT NYA FILSYSTEM\Allt som viktigt på datorn\små filer\ARBETSMAPP\4 -Syssälsättning projekt\Skola\MAU SYS\Progr\Arbetsmapp\random-image-quiz\.idea" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.ExternalAPIHandler">
+    <configuration name="ExternalAPIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ExternalAPIHandler" />
+      <module name="random-image-quiz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OscarsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="OscarsTest" />
+      <module name="random-image-quiz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RunServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RunServer" />
+      <module name="random-image-quiz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ExternalAPIHandler" />
+        <item itemvalue="Application.RunServer" />
+        <item itemvalue="Application.OscarsTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="gitignore fil flyttad" />
+      <created>1607425937713</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607425937713</updated>
+    </task>
+    <task id="LOCAL−00001" summary="gitignore fil">
+      <created>1607699711138</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1607699711138</updated>
+    </task>
+    <task id="LOCAL−00002" summary="gitignore fil flyttad">
+      <created>1607699859496</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1607699859496</updated>
+    </task>
+    <task id="LOCAL−00003" summary="fixat så att det kommer nya spel">
+      <created>1609832920315</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1609832920315</updated>
+    </task>
+    <task id="LOCAL−00004" summary="bättre svar">
+      <created>1609835070402</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1609835070403</updated>
+    </task>
+    <task id="LOCAL−00005" summary="kommenterat lite">
+      <created>1609839655441</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1609839655441</updated>
+    </task>
+    <task id="LOCAL−00006" summary="tagit bort ' ur svaret">
+      <created>1609841413644</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1609841413644</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="gitignore fil" />
+    <MESSAGE value="gitignore fil flyttad" />
+    <MESSAGE value="fixat så att det kommer nya spel" />
+    <MESSAGE value="bättre svar" />
+    <MESSAGE value="kommenterat lite" />
+    <MESSAGE value="tagit bort ' ur svaret" />
+    <option name="LAST_COMMIT_MESSAGE" value="tagit bort ' ur svaret" />
+  </component>
+</project>
