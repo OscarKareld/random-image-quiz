@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExternalAPIHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/JServiceObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JServiceObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/QuestionCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/QuestionCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RunServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Score.java" afterDir="false" />
-    </list>
+    <list default="true" id="0ddbdab9-ea9a-4af8-9526-fc5f127a2079" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +51,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RunServer">
+  <component name="RunManager" selected="Application.ExternalAPIHandler">
     <configuration name="ExternalAPIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ExternalAPIHandler" />
       <module name="random-image-quiz" />
@@ -84,8 +75,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RunServer" />
         <item itemvalue="Application.ExternalAPIHandler" />
+        <item itemvalue="Application.RunServer" />
         <item itemvalue="Application.OscarsTest" />
       </list>
     </recent_temporary>
@@ -125,7 +116,13 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1609835070403</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="kommenterat lite">
+      <created>1609839655441</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1609839655441</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +143,7 @@
     <MESSAGE value="gitignore fil flyttad" />
     <MESSAGE value="fixat så att det kommer nya spel" />
     <MESSAGE value="bättre svar" />
-    <option name="LAST_COMMIT_MESSAGE" value="bättre svar" />
+    <MESSAGE value="kommenterat lite" />
+    <option name="LAST_COMMIT_MESSAGE" value="kommenterat lite" />
   </component>
 </project>
