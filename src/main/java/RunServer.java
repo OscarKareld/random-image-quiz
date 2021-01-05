@@ -55,7 +55,14 @@ public class RunServer {
         });
 
         get("/highscore/:diff", (req, res) -> { //http://localhost:8080/highscore/easy?amount=1
-            int amount = Integer.parseInt(req.queryMap().value("amount"));
+            String stringAmount = req.queryMap().value("amount");
+            int amount;
+            if (stringAmount == null) {
+                amount = 100;
+            }
+            else {
+                amount = Integer.parseInt(stringAmount);
+            }
             Difficulty difficulty = Difficulty.valueOf(req.params(":diff"));
             ArrayList<Score> highScore = controller.getHighScore(difficulty, amount);
             Gson gson = new Gson();

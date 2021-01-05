@@ -34,7 +34,7 @@ public class ExternalAPIHandler {
             if (!jsonObject.isNull("value")) {
                 QuestionCard questionCard = new QuestionCard();
                 String answer = jsonObject.getString("answer");
-                /* TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
+                // TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
                 String image = getPicture(answer);
 
                 if (image == null) {
@@ -42,13 +42,13 @@ public class ExternalAPIHandler {
                     continue;
                 }
 
-                 */
+
                 int difficulty = jsonObject.getInt("value");
                 questionCard.setId(jsonObject.getString("id"));
                 questionCard.setAnswer(answer);
                 questionCard.setQuestion(jsonObject.getString("question"));
                 questionCard.setDifficulty(difficulty);
-//                questionCard.setImage(image); //TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
+                questionCard.setImage(image); //TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
                 if (difficulty > 0 && difficulty < 350) {
                     easy.add(questionCard);
                 } else if (difficulty > 350 && difficulty < 650) {
