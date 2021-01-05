@@ -7,7 +7,7 @@ import java.sql.Date;
  * @version 1.0
  *
  */
-public class Score implements Serializable {
+public class Score implements Serializable, Comparable<Score> {
     private String className = this.getClass().getName();
     private String userNickName;
     private int points;
@@ -44,5 +44,17 @@ public class Score implements Serializable {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+
+    @Override
+    public int compareTo(Score o) {
+        if(points > o.points) {
+            return -1;
+        }else if(points == o.points){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 }

@@ -48,7 +48,7 @@ public class ExternalAPIHandler {
                 String answer = jsonObject.getString("answer");
                 answer = cleanUpAnswer(answer);
                 // TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
-                String image = getPicture(answer);
+                String image = "" ;//getPicture(answer);
 
                 if (image == null) {
                     System.out.println("Image is null. i = " + i);
