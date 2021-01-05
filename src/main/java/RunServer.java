@@ -69,15 +69,12 @@ public class RunServer {
             ArrayList<Score> highScoreEasy = controller.getHighScore(Difficulty.easy, amount);
             ArrayList<Score> highScoreMedium = controller.getHighScore(Difficulty.medium, amount);
             ArrayList<Score> highScoreDifficult = controller.getHighScore(Difficulty.difficult, amount);
-
+            ArrayList<Score>[] lista = new ArrayList[3];
+            lista[0] = highScoreEasy;
+            lista[1] = highScoreMedium;
+            lista[2] = highScoreDifficult;
             Gson gson = new Gson();
-            String jsonEasy =  gson.toJson(highScoreEasy);
-            String jsonMedium =  gson.toJson(highScoreMedium);
-            String jsonDifficult =  gson.toJson(highScoreDifficult);
-            String[] json = new String[3];
-            json[0] = jsonEasy;
-            json[1] = jsonMedium;
-            json[2] = jsonDifficult;
+            String json =  gson.toJson(lista);
             res.header("Content-Type", "application/json");
             return json;
         });
