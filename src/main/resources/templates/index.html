@@ -1,7 +1,7 @@
 {% extends "templates/base.html" %}
 
 {% block main %}
-<h3 class="text-center" id="h3-start"> Select a difficulty to start play! </h3>
+<h2 class="text-center" id="h3-start"> Select a difficulty to start playing! </h3>
 <div class="row justify-content-center">
     <button type="button" class="btn btn-custom start-quiz"><a href="/quiz/easy">Easy</a></button>
     <button type="button" class="btn btn-custom start-quiz"><a href="/quiz/medium">Medium</a></button>
@@ -14,42 +14,33 @@
             <div class="carousel-item active" data-bs-interval="10000">
                 <div class="card">
                     <a href="/scoreboard">
-                        <div class="card-header text-center">
+                        <div class="card-header center scoreboard-h">
                             Scoreboard Easy
                         </div>
                     </a>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">1. Hanna</li>
-                        <li class="list-group-item">2. Hanna</li>
-                        <li class="list-group-item">3. Hanna</li>
+                    <ul id="scoreboard-easy" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="2000">
                 <div class="card">
                     <a href="/scoreboard">
-                        <div class="card-header text-center">
+                        <div class="card-header center scoreboard-h">
                             Scoreboard Medium
                         </div>
                     </a>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">1. Hanna</li>
-                        <li class="list-group-item">2. Hanna</li>
-                        <li class="list-group-item">3. Hanna</li>
+                    <ul id="scoreboard-medium" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="card">
                     <a href="/scoreboard">
-                        <div class="card-header text-center">
+                        <div class="card-header center scoreboard-h">
                             Scoreboard Difficult
                         </div>
                     </a>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">1. Hanna</li>
-                        <li class="list-group-item">2. Hanna</li>
-                        <li class="list-group-item">3. Hanna</li>
+                    <ul id="scoreboard-difficult" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>

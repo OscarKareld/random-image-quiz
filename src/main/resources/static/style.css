@@ -24,12 +24,34 @@ header, nav, main, footer{
 }
 
 /*ALL*/
-.center-text{
+.center{
     text-align: center;
 }
 a{
     text-decoration: none;
-    color: rgba(241, 242, 243, 0.945);
+    color: rgba(241, 242, 243, 0.945) !important;
+}
+a:hover{
+    color:rgb(126, 186, 201) !important;
+}
+.left{
+    text-align:left;
+}
+.right{
+    text-align:right !important;
+    font-weight: bold;
+}
+h2{
+    margin-top:20px;
+}
+.btn-custom{
+    background-color:  rgb(57, 153, 177);
+    color: rgba(241, 242, 243, 0.945); /* fixa hoover */
+    margin: 10px;
+    width: 80px; 
+}
+.btn-custom:hover{
+    color: rgb(126, 186, 201) !important;
 }
 
 /* HEADER / NAVIGATION*/
@@ -44,35 +66,36 @@ nav{
    }
 .navbar-custom { 
     background-color: rgb(57, 153, 177);
-} 
+}
+.nav-link{
+    font-size: 20px;
+}
 
 /* MAIN */
 main{
     grid-area: main;
     background-color: rgba(241, 242, 243, 0.945);
 }
-#h3-start{
-    margin-top:20px;
-}
-.btn-custom{
-    background-color:  rgb(57, 153, 177);
-    color: white; /* fixa hoover */
-    margin: 10px;
-    width: 80px; 
-} 
 .carousel{
     margin:30px;
 }
 .carousel-control-prev-icon, .carousel-control-next-icon{
-    margin-bottom: 120px;
+    margin-bottom: 60px;
+}
+.scoreboard-h{
+    color:  rgb(57, 153, 177);
+}
+.scoreboard-h:hover{
+    color: rgb(144, 191, 202)
 }
 
 /* QUIZ */
-.question{
-    justify-content: center;
-}
-#submit_answer{
+#answer_input{
     margin-left:0px;
+}
+#h2-quiz{
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 /* FOOTER */
