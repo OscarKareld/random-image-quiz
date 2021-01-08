@@ -1,7 +1,10 @@
-// blir alltid samma spel som körs... :( -- Hanna-My felsökning 
-// lower case
-// highscoresida
-// fixa css
+// fixa scoreboard till fast bredd m.m.
+// specialtecken (mellanslag) , - dubbla mellanslag mellan ord.
+// endast ETT resultat per svårighet sparas --> resultat skrivsöver, permanent?
+// användarnamn(nickname) sparas inte i listan  
+// text första sidan
+// API sidan
+//ta bort mappen images? 
 var questions
 var index = -1
 var timerId = 0
@@ -9,7 +12,7 @@ var answers = []
 var timeLeft = -1 // varför -1? 
 
 $('.start-quiz').click(startQuiz());
-$('.scoreboard-page').click(showScoreboard());
+$('.scoreboard-page').click(getScoreboard());
 
 function startQuiz() { //denna körs när ett spel startas 
   $('#result-page').hide();
@@ -56,7 +59,7 @@ function checkAnswer(event) {
   event.preventDefault() // den gör så att saker funkar 
   var points = (timeLeft * 10);
 
-  var answer = $("#answer_input").val().toLowerCase().replace(/[^a-z0-9', ]/g, ""); // hämtar spelarens svar   
+  var answer = $("#answer_input").val().toLowerCase().replace(/[^a-z0-9 ]/g, ""); // hämtar spelarens svar   
 
   console.log(questions[index]['answer'])
   $("#answer_input").val('') // tömmer input
@@ -146,7 +149,6 @@ function saveToScoreboard(event) {
     "points": countPoints(),
     "difficulty": window.location.pathname.replace("/quiz/", ""),
   };
-  console.log(score);
 
   $.ajax({
     method: "POST",
@@ -157,12 +159,11 @@ function saveToScoreboard(event) {
     .done(function () {
       console.log('Lagt till följande data:');
       console.log(JSON.stringify(score));
+      location.replace("http://localhost:8080/scoreboard")
     });
-
-  //location.replace("http://localhost:8080/scoreboard")
 }
 
-function showScoreboard() {
+function getScoreboard() {
   console.log("Hej!")
   $.ajax({
     method: "GET",
@@ -171,6 +172,23 @@ function showScoreboard() {
   })
     .done(function (data) {
       console.log(data);
-      scoreboard = data;
+      scoreboards = data;
+      showScoreboard(scoreboards)
+
     })
+}
+
+function showScoreboard(scoreboards) {
+  for (i = 0; i < 4; i++) {
+    scoreboard = scoreboards[i]
+    for (a = 0; a < scoreboard.length; a++) {
+      var entry = $(document.createElement('li'));
+      $(entry).attr("class", "list-group-item");
+      $(entry).appendTo("#scoreboard-" + scoreboard[a]['difficulty']);
+
+      var html = '<p><span class="left"> Hanna och Rebecka</span> <span class="right">' + scoreboard[a]['points'] + '</span></p>'
+      $(entry).append(html);
+
+    }
+  }
 }
