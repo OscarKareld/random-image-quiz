@@ -4,6 +4,7 @@
 // användarnamn(nickname) sparas inte i listan  
 // text första sidan
 // API sidan
+//ta bort mappen images? 
 var questions
 var index = -1
 var timerId = 0
@@ -32,7 +33,7 @@ function startQuiz() { //denna körs när ett spel startas
     })
 };
 
-function printQuestion() { 
+function printQuestion() {
   // när vi kommit till sista frågan avbryter vi
   if (index == 9) {
     clearTimeout(timerId);
@@ -177,10 +178,10 @@ function getScoreboard() {
     })
 }
 
-function showScoreboard(scoreboards){
-  for(i=0; i<4; i++){
+function showScoreboard(scoreboards) {
+  for (i = 0; i < 4; i++) {
     scoreboard = scoreboards[i]
-    for(a=0; a<scoreboard.length; a++){
+    for (a = 0; a < scoreboard.length; a++) {
       var entry = $(document.createElement('li'));
       $(entry).attr("class", "list-group-item");
       $(entry).appendTo("#scoreboard-" + scoreboard[a]['difficulty']);
