@@ -40,7 +40,6 @@ a:hover{
 .right{
     text-align:right !important;
     font-weight: bold;
-    float: right;
 }
 h2{
     margin-top:20px;
@@ -82,17 +81,11 @@ main{
 }
 .carousel-control-prev-icon, .carousel-control-next-icon{
     margin-bottom: 60px;
-    align-items: flex-start !important;
 }
-.carousel-control-prev, .carousel-control-next{
-    align-items: flex-start !important;
-    margin-top: 5px;
-}
-
-.highscore-h{
+.scoreboard-h{
     color:  rgb(57, 153, 177);
 }
-.highscore-h:hover{
+.scoreboard-h:hover{
     color: rgb(144, 191, 202)
 }
 

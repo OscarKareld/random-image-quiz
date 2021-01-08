@@ -1,39 +1,39 @@
 {% extends "templates/base.html" %}
 {% block main %}
-<h2 class="center"> Highscore </h2>
+<h2 class="center"> Här visas poängtavlan </h2>
 <div class="row justify-content-center">
     <div id="carouselExampleDark" class="carousel carousel-dark slide w-50" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10000">
                 <div class="card">
-                    <a href="/highscore">
-                        <div class="card-header center highscore-h">
-                            Highscore Easy
+                    <a href="/scoreboard">
+                        <div class="card-header center scoreboard-h">
+                            Scoreboard Easy
                         </div>
                     </a>
-                    <ul id="highscore-easy" class="list-group list-group-flush">
+                    <ul id="scoreboard-easy" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="2000">
                 <div class="card">
-                    <a href="/highscore">
-                        <div class="card-header center highscore-h">
-                            Highscore Medium
+                    <a href="/scoreboard">
+                        <div class="card-header center scoreboard-h">
+                            Scoreboard Medium
                         </div>
                     </a>
-                    <ul id="highscore-medium" class="list-group list-group-flush">
+                    <ul id="scoreboard-medium" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="card">
-                    <a href="/highscore">
-                        <div class="card-header center highscore-h">
-                            Highscore Difficult
+                    <a href="/scoreboard">
+                        <div class="card-header center scoreboard-h">
+                            Scoreboard Difficult
                         </div>
                     </a>
-                    <ul id="highscore-difficult" class="list-group list-group-flush">
+                    <ul id="scoreboard-difficult" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>

@@ -31,8 +31,8 @@ public class RunServer {
             return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/index.html"));
         });
 
-        get("/highscore", (req, res) -> {
-            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/highscore.html"));
+        get("/scoreboard", (req, res) -> {
+            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/scoreboard.html"));
         });
 
         get("/api", (req, res) -> {

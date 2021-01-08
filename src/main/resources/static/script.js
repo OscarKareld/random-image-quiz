@@ -1,10 +1,10 @@
-// fixa highscore till fast bredd m.m.
+// fixa scoreboard till fast bredd m.m.
 // specialtecken (mellanslag) , - dubbla mellanslag mellan ord.
-// highscore tas bort permanent när programmet körs om
+// endast ETT resultat per svårighet sparas --> resultat skrivsöver, permanent?
 // användarnamn(nickname) sparas inte i listan  
 // text första sidan
 // API sidan
-// ta bort mappen images? 
+//ta bort mappen images? 
 var questions
 var index = -1
 var timerId = 0
@@ -12,7 +12,7 @@ var answers = []
 var timeLeft = -1 // varför -1? 
 
 $('.start-quiz').click(startQuiz());
-$('.highscore-page').click(getHighscore());
+$('.scoreboard-page').click(getScoreboard());
 
 function startQuiz() { //denna körs när ett spel startas 
   $('#result-page').hide();
@@ -44,7 +44,7 @@ function printQuestion() {
     index++
     $('#h4-quiz').text("Question " + (index + 1) + "/" + questions.length);
     $('.card-text').text(questions[index]['question']);
-    $('#img-clue').attr("src", "/images/cat.jpg"); //questions[index]['image']
+    $('#img-clue').attr("src", questions[index]['image']);
     $('#img-clue').hide();
     // tar bort den gamla timern och skapar en ny
     clearTimeout(timerId);
@@ -85,7 +85,7 @@ function checkAnswer(event) {
 };
 
 function startTimer() {
-  timeLeft = 10;
+  timeLeft = 30;
   timerId = setInterval(countdown, 1000);
 
   function countdown() {
@@ -131,7 +131,7 @@ function showResult() {
 
 };
 
-$("#name-form").submit(saveToHighscore) // när namnet skickas körs saveToHighscore 
+$("#name-form").submit(saveToScoreboard) // när namnet skickas körs saveToScoreboard 
 
 function countPoints() {
   var points = 0
@@ -141,7 +141,7 @@ function countPoints() {
   return points
 }
 
-function saveToHighscore(event) {
+function saveToScoreboard(event) {
   event.preventDefault()
 
   var score = {
@@ -159,34 +159,36 @@ function saveToHighscore(event) {
     .done(function () {
       console.log('Lagt till följande data:');
       console.log(JSON.stringify(score));
-      location.replace("http://localhost:8080/highscore")
+      location.replace("http://localhost:8080/scoreboard")
     });
 }
 
-function getHighscore() {
+function getScoreboard() {
+  console.log("Hej!")
   $.ajax({
     method: "GET",
-    url: "http://localhost:8080/highscore?amount=10",
+    url: "http://localhost:8080/highscore?amount=1",
     headers: { "Accept": "application/json" }
   })
     .done(function (data) {
       console.log(data);
-      highscores = data;
-      showHighscore(highscores)
+      scoreboards = data;
+      showScoreboard(scoreboards)
+
     })
 }
 
-function showHighscore(highscores) {
+function showScoreboard(scoreboards) {
   for (i = 0; i < 4; i++) {
-    var highscore = highscores[i]
-    for (a = 0; a < highscore.length; a++) {
+    scoreboard = scoreboards[i]
+    for (a = 0; a < scoreboard.length; a++) {
       var entry = $(document.createElement('li'));
       $(entry).attr("class", "list-group-item");
-      $(entry).appendTo("#highscore-" + highscore[a]['difficulty']);
-      if (a < 3 & a < highscore.length)
-        $(entry).appendTo("#highscore-start-" + highscore[a]['difficulty']);
-      var html = '<p><span class="left"> Hanna och Rebecka</span> <span class="right">' + highscore[a]['points'] + '</span></p>'
+      $(entry).appendTo("#scoreboard-" + scoreboard[a]['difficulty']);
+
+      var html = '<p><span class="left"> Hanna och Rebecka</span> <span class="right">' + scoreboard[a]['points'] + '</span></p>'
       $(entry).append(html);
+
     }
   }
 }
