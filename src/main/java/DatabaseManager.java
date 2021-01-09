@@ -56,7 +56,7 @@ public class DatabaseManager {
             Statement statement = connection.createStatement();
 
             String addScoreQuery = "insert into RIQ.dbo.Highscore (nickname, points, datetime, difficulty)" +
-                    " values ('" + score.getUserNickName() + "', " + score.getPoints() + ", '" + score.getDatetime() + "', '" + score.getDifficulty() + "');";
+                    " values ('" + score.getUserNickName() + "', " + score.getPoints() + ", '" + score.getDifficulty() + "');";
             System.out.println("addScoreQuery: " + addScoreQuery);
 
 //            statement.executeQuery(addScoreQuery);
@@ -82,12 +82,12 @@ public class DatabaseManager {
                 Score score = new Score();
                 score.setUserNickName(results.getString("nickname"));
                 score.setPoints(results.getInt("points"));
-                score.setDatetime(results.getString("datetime"));
+
                 score.setDifficulty(results.getString("difficulty"));
                 highScoreList.add(score);
                 System.out.println(score.getUserNickName());
                 System.out.println("points: " + score.getPoints());
-                System.out.println("datetime: " + score.getDatetime());
+
             }
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
@@ -101,7 +101,7 @@ public class DatabaseManager {
         Score score = new Score();
         score.setUserNickName("Oscar");
         score.setPoints(80000);
-        score.setDatetime("1971-01-03 00:00:00");
+
         score.setDifficulty("easy");
 
         dbm.addScore(score); //TODO: Fick nåt exception från SQL, men värdena lades in i tabellen ändå. Vid testning räcker det med att ändra userNickName.

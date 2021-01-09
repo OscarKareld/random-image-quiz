@@ -164,7 +164,18 @@ public class ExternalAPIHandler {
             StringBuilder sb = new StringBuilder(searchString);
             sb.delete(index1, index1 + 1);
             searchString = sb.toString();
-
+        }
+        while (searchString.contains("?")) {
+            int index1 = searchString.indexOf("?");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+        }
+        while (searchString.contains("!")) {
+            int index1 = searchString.indexOf("!");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
         }
         while (searchString.contains("-")) {
             int index1 = searchString.indexOf("-");

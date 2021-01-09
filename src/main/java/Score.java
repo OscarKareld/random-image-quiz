@@ -11,7 +11,6 @@ public class Score implements Serializable, Comparable<Score> {
     private String className = this.getClass().getName();
     private String userNickName;
     private int points;
-    private String datetime;
     private String difficulty;
 
     public String getUserNickName() {
@@ -28,14 +27,6 @@ public class Score implements Serializable, Comparable<Score> {
 
     public void setPoints(int points) {
         this.points = points;
-    }
-
-    public String getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
     }
 
     public String getDifficulty() {
