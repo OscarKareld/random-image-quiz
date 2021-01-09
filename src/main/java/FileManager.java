@@ -82,7 +82,9 @@ public class FileManager {
 
     public static void main(String[] args) {
         FileManager fm = new FileManager();
-       /* Score score = new Score();
+
+        /*
+       Score score = new Score();
         score.setDatetime("2021-01-01");
         score.setDifficulty("easy");
         score.setPoints(2010);
@@ -212,14 +214,8 @@ public class FileManager {
         fm.addScore(score237);
 
 
-*/
+         */
 
-        Score score237 = new Score();
-        score237.setDatetime("2021-01-04");
-        score237.setDifficulty("difficult");
-        score237.setPoints(8800);
-        score237.setUserNickName("Rebecka");
-        fm.addScore(score237);
 
       ArrayList<Score> a =  fm.getHighScore(Difficulty.medium, 12);
 
