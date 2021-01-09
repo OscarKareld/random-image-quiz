@@ -16,7 +16,7 @@ public class Controller {
         databaseManager = new DatabaseManager();
         externalAPIHandler = new ExternalAPIHandler();
         fileManager = new FileManager();
-        externalAPIHandler.createGames();
+        externalAPIHandler.start();
     }
 
     //gets the highscore from the database

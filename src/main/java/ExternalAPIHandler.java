@@ -23,6 +23,13 @@ public class ExternalAPIHandler {
     ArrayList<QuestionCard> medium = new ArrayList<>();
     ArrayList<QuestionCard> hard = new ArrayList<>();
 
+
+
+    public void start(){
+        ApiThread apiThread = new ApiThread();
+        apiThread.start();
+    }
+
     /**
      * This methode calls jservice to get 100 questions and then sort it into games with 10 questions each
      * depending on the difficulty level. It ads it to the three queues. It also calls the get picture and cleanUpAnswer for every question.
@@ -229,6 +236,19 @@ public class ExternalAPIHandler {
         if (searchString.startsWith("the ") || searchString.startsWith("The ")) {
             searchString = searchString.substring(4);
         }
+        while (searchString.endsWith(" ")) {
+            searchString = searchString.substring(0, searchString.length() - 1);
+        }
+        while (searchString.startsWith(" ")) {
+            searchString = searchString.substring(1);
+        }
+        while (searchString.contains("  ")) {
+            int index1 = searchString.indexOf("  ");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
 
         //System.out.println(searchString);
         while (searchString.contains(" ")) {
@@ -338,7 +358,6 @@ public class ExternalAPIHandler {
     public ArrayList<QuestionCard> getGameWithQuestionCards(Difficulty difficulty) {
         ArrayList<QuestionCard> game = null;
 
-
         if (difficulty == Difficulty.easy && !queueEasy.isEmpty()) {
             game = queueEasy.pollFirst();
 
@@ -353,6 +372,7 @@ public class ExternalAPIHandler {
             ApiThread apiThread = new ApiThread();
             apiThread.start();
         }
+
         return game;
     }
 

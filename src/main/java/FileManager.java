@@ -85,7 +85,7 @@ public class FileManager {
 
 
        Score score = new Score();
-
+/*
         score.setDifficulty("easy");
         score.setPoints(2010);
         score.setUserNickName("Oscar");
@@ -211,7 +211,7 @@ public class FileManager {
         score237.setUserNickName("Rebecka");
         fm.addScore(score237);
 
-
+*/
 
       ArrayList<Score> a =  fm.getHighScore(Difficulty.medium, 12);
 
