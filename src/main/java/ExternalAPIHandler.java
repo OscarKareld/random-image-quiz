@@ -48,7 +48,7 @@ public class ExternalAPIHandler {
                 String answer = jsonObject.getString("answer");
                 answer = cleanUpAnswer(answer);
                 // TODO: Avmarkerat för att inte maxa antalet anrop till Pixabay under testningen
-                String image = "" ;//getPicture(answer);
+                String image = getPicture(answer);
 
                 if (image == null) {
                     System.out.println("Image is null. i = " + i);
@@ -144,6 +144,58 @@ public class ExternalAPIHandler {
             searchString = sb.toString();
 
         }
+        while (searchString.contains(".")) {
+            int index1 = searchString.indexOf(".");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
+        while (searchString.contains(",")) {
+            int index1 = searchString.indexOf(",");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
+
+        while (searchString.contains(":")) {
+            int index1 = searchString.indexOf(":");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
+        while (searchString.contains("-")) {
+            int index1 = searchString.indexOf("-");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
+
+        while (searchString.contains("  ")) {
+            int index1 = searchString.indexOf("  ");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, index1 + 1);
+            searchString = sb.toString();
+
+        }
+        while (searchString.contains("/")) {
+            int index1 = searchString.indexOf("/");
+            StringBuilder sb = new StringBuilder(searchString);
+            sb.delete(index1, searchString.length());
+            searchString = sb.toString();
+
+        }
+
+        while (searchString.endsWith(" ")) {
+            searchString = searchString.substring(0, searchString.length() - 1);
+        }
+        while (searchString.startsWith(" ")) {
+            searchString = searchString.substring(1);
+        }
+
         System.out.println("cleaned " + searchString);
         return searchString;
     }
@@ -165,12 +217,7 @@ public class ExternalAPIHandler {
         if (searchString.startsWith("the ") || searchString.startsWith("The ")) {
             searchString = searchString.substring(4);
         }
-        while (searchString.endsWith(" ")) {
-            searchString = searchString.substring(0, searchString.length() - 1);
-        }
-        while (searchString.startsWith(" ")) {
-            searchString = searchString.substring(1);
-        }
+
         System.out.println(searchString);
         while (searchString.contains(" ")) {
             int index = searchString.indexOf(" ");
@@ -313,9 +360,9 @@ public class ExternalAPIHandler {
     //Den här metoden finns enbart för att testa ExternalAPIHandler-klassen
     public static void main(String[] args) {
         ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
-        // externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
+        //externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
 //        externalAPIHandler.getPicture("blue whale water");
-        externalAPIHandler.cleanUpAnswer("ain't");
+        externalAPIHandler.cleanUpAnswer("HEJ/HOJ");
 
     }
 }
