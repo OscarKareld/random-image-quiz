@@ -34,24 +34,34 @@ a{
 a:hover{
     color:rgb(126, 186, 201) !important;
 }
-.left{
-    text-align:left;
-}
+
 .right{
-    text-align:right !important;
+    float: right;
     font-weight: bold;
 }
 h2{
     margin-top:20px;
 }
-.btn-custom{
+.btn-custom-p{
     background-color:  rgb(57, 153, 177);
-    color: rgba(241, 242, 243, 0.945); /* fixa hoover */
+    color: rgba(241, 242, 243, 0.945);
     margin: 10px;
     width: 80px; 
 }
-.btn-custom:hover{
-    color: rgb(126, 186, 201) !important;
+.btn-custom-p:hover{
+    color:rgb(126, 186, 201) !important;
+}
+
+.btn-custom-s{
+    background-color:  rgba(241, 242, 243, 0.945) !important;
+    color:  rgb(57, 153, 177);
+  /*  border-width: 3px;
+    border-color:rgba(223, 232, 240, 0.945); */
+    margin: 10px;
+    width: 100px; 
+}
+.btn-custom-s:hover{
+    color:  rgb(152, 175, 180);
 }
 
 /* HEADER / NAVIGATION*/
@@ -60,9 +70,7 @@ nav{
 }
 .navbar {
     padding: 0px;
-    -webkit-box-shadow: 0 6px 6px -6px rgb(190, 187, 187);
-    -moz-box-shadow: 0 6px 6px -6px rgb(190, 187, 187);
-    box-shadow: 0 6px 6px -6px rgb(190, 187, 187);
+ 
    }
 .navbar-custom { 
     background-color: rgb(57, 153, 177);
@@ -79,8 +87,9 @@ main{
 .carousel{
     margin:30px;
 }
-.carousel-control-prev-icon, .carousel-control-next-icon{
-    margin-bottom: 60px;
+.carousel-control-prev, .carousel-control-next{
+    align-items: flex-start !important;
+    margin: 5px;
 }
 .scoreboard-h{
     color:  rgb(57, 153, 177);
@@ -97,7 +106,13 @@ main{
     margin-top: 10px;
     margin-bottom: 20px;
 }
-
+#show-img {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    }
+#question_id {
+    padding: 10px;
+    }
 /* FOOTER */
 
 footer{

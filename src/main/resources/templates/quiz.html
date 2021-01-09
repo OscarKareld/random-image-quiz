@@ -13,10 +13,12 @@
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
-        <form name="question-form" id="question-form">
+        <form name="question-form" id="question-form" autocomplete="off">
           <label for="answer">Answer:</label> <br>
-          <input type="text" id="answer_input" name="answer" placeholder="answer..."> <br>
-          <button type="submit" id="answer_input" class="btn btn-custom">Submit</button>
+          <input type="text" id="answer_input" name="answer" placeholder="answer...">
+          <button type="button" class="btn btn-custom-s" id="show-img">Show hint</button>
+          <br>
+          <button type="submit" id="answer_input" class="btn btn-custom-p">Submit</button>
         </form>
       </li>
       <li class="list-group-item center" id="timer"></li>
@@ -40,14 +42,14 @@
   <form name="name-form" id="name-form">
     <label for="name_input">Name:</label> <br>
     <input type="text" id="name_input" name="name" placeholder="Enter your name"> <br>
-    <button type="submit" id="name_input" class="btn btn-custom">Submit</button>
+    <button type="submit" id="name_input" class="btn btn-custom-p">Submit</button>
   </form>
 
   <div class="row justify-content-center">
-    <button type="button" class="btn col-1 btn-custom start-game" id="play-again">
+    <button type="button" class="btn btn-custom-p start-game" id="play-again">
       <a href="/">Play again</a>
     </button>
-    <button type="button" class="btn col-1 btn-custom start-game"><a href="/">Go to start page</a></button>
+    <button type="button" class="btn btn-custom-p start-game"><a href="/">Go to start page</a></button>
   </div>
 </div>
 </div>

@@ -5,14 +5,20 @@
 // text första sidan
 // API sidan
 //ta bort mappen images? 
-var questions
+var questions = []
 var index = -1
 var timerId = 0
 var answers = []
+var use_clue = false
 var timeLeft = -1 // varför -1? 
 
 $('.start-quiz').click(startQuiz());
 $('.scoreboard-page').click(getScoreboard());
+$('#show-img').click(function(){
+  $('#img-clue').show();
+  use_clue = true
+});
+
 
 function startQuiz() { //denna körs när ett spel startas 
   $('#result-page').hide();
@@ -42,13 +48,15 @@ function printQuestion() {
 
   else {
     index++
-    $('#h4-quiz').text("Question " + (index + 1) + "/" + questions.length);
-    $('.card-text').text(questions[index]['question']);
-    $('#img-clue').attr("src", questions[index]['image']);
-    $('#img-clue').hide();
-    // tar bort den gamla timern och skapar en ny
     clearTimeout(timerId);
     startTimer();
+    use_clue = false
+    $('#h4-quiz').text("Question " + (index + 1) + "/" + questions.length);
+    $('.card-text').text(questions[index]['question']);
+    $('#img-clue').attr("src", "/images/cat.jpg" ); //questions[index]['image']
+    $('#img-clue').hide();
+    // tar bort den gamla timern och skapar en ny
+    
   }
 };
 
@@ -66,7 +74,7 @@ function checkAnswer(event) {
 
   if (answer == questions[index]['answer']) {
     // räknar ut poäng
-    if (points > 145) {
+    if (use_clue == false) {
       points = points * points / 90;
     }
     else {
@@ -101,14 +109,14 @@ function startTimer() {
       clearTimeout(timerId);
       printQuestion()
     }
-    else {
+   // else {
       // visar bild
-      if (timeLeft == 15) {
-        $('#img-clue').show();
-      }
+   //   if (timeLeft == 15) {
+   //     $('#img-clue').show();
+   //   }
       $('#timer').text(timeLeft + ' seconds remaining');
       timeLeft--;
-    }
+  //  }
   }
 }
 
@@ -149,6 +157,7 @@ function saveToScoreboard(event) {
     "points": countPoints(),
     "difficulty": window.location.pathname.replace("/quiz/", ""),
   };
+  console.log($("#name_input").val(),)
 
   $.ajax({
     method: "POST",
@@ -159,12 +168,11 @@ function saveToScoreboard(event) {
     .done(function () {
       console.log('Lagt till följande data:');
       console.log(JSON.stringify(score));
-      location.replace("http://localhost:8080/scoreboard")
+      location.replace("http://localhost:8080/scoreboard");
     });
 }
 
 function getScoreboard() {
-  console.log("Hej!")
   $.ajax({
     method: "GET",
     url: "http://localhost:8080/highscore?amount=1",
@@ -172,15 +180,15 @@ function getScoreboard() {
   })
     .done(function (data) {
       console.log(data);
-      scoreboards = data;
+      var scoreboards = data;
       showScoreboard(scoreboards)
 
     })
 }
 
 function showScoreboard(scoreboards) {
-  for (i = 0; i < 4; i++) {
-    scoreboard = scoreboards[i]
+  for (i = 0; i < 3; i++) {
+    var scoreboard = scoreboards[i]
     for (a = 0; a < scoreboard.length; a++) {
       var entry = $(document.createElement('li'));
       $(entry).attr("class", "list-group-item");
