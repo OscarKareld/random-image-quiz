@@ -1,13 +1,9 @@
-// specialtecken ! ? & dubbla mellanslag mellan ord.
-// text första sidan
-// Vi får previewURL men vill ha webformatURL
-
 var questions = []
 var index = -1
 var timerId = 0
 var answers = []
 var use_clue = false
-var timeLeft = -1 // varför -1? 
+var timeLeft = -1 
 
 //dropdown
 $('#navbarDropdownMenuLink').click(function(){
@@ -70,7 +66,6 @@ function startQuiz() { //denna körs när ett spel startas
           questions = data;
           $('#h2-quiz').text(difficulty + " Quiz");
           printQuestion(questions[index]);
-          console.log(data)
           clearInterval(loadingInterval)
         };
       })
@@ -108,7 +103,7 @@ function checkAnswer(event) {
 
   var answer = $("#answer_input").val().toLowerCase().replace(/[^a-z0-9 ]/g, ""); // hämtar spelarens svar och fixar till det  
 
-  console.log(questions[index]['answer'])
+  //console.log(questions[index]['answer'])
   $("#answer_input").val('') // tömmer input
 
   if (answer == questions[index]['answer']) {
