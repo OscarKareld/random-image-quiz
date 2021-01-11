@@ -262,7 +262,7 @@ public class ExternalAPIHandler {
             JSONObject jsonObject = jsonNode.getObject();
             JSONArray jsonArray = jsonObject.getJSONArray("hits");
             JSONObject jsonpicture = jsonArray.getJSONObject(0);
-            pictureURL = jsonpicture.getString("previewURL");
+            pictureURL = jsonpicture.getString("webformatURL");
         } catch (Exception e) {
         }
 
@@ -290,7 +290,7 @@ public class ExternalAPIHandler {
                 JSONObject jsonObject = jsonNode.getObject();
                 JSONArray jsonArray = jsonObject.getJSONArray("hits");
                 JSONObject jsonpicture = jsonArray.getJSONObject(0);
-                pictureURL = jsonpicture.getString("previewURL");
+                pictureURL = jsonpicture.getString("webformatURL");
             } catch (Exception e) {
             }
 
