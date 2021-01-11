@@ -131,7 +131,7 @@ function checkAnswer(event) {
 };
 
 function startTimer() {
-  timeLeft = 10;
+  timeLeft = 30;
   timerId = setInterval(countdown, 1000);
 
   function countdown() {
