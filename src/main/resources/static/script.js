@@ -5,16 +5,6 @@ var answers = []
 var use_clue = false
 var timeLeft = -1 
 
-//dropdown
-$('#navbarDropdownMenuLink').click(function(){
-  if($(".dropdown-menu").is(":visible")){
-    $('.dropdown-menu').hide();
-  }
-  else{
-    $('.dropdown-menu').show();
-  }
-});
-
 //knappar
 $('.start-quiz').click(startQuiz());
 $('#show-img').click(function(){
