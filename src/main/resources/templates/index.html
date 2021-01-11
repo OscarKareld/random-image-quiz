@@ -5,8 +5,10 @@
 <h5 class="center"> Select a difficulty to start playing </h5>
 <div class="row justify-content-center">
     <button type="button" class="btn btn-custom-p start-quiz" onclick="window.location.href='/quiz/easy';">Easy</button>
-    <button type="button" class="btn btn-custom-p start-quiz" onclick="window.location.href='/quiz/medium';">Medium</button>
-    <button type="button" class="btn btn-custom-p start-quiz" onclick="window.location.href='/quiz/difficult';">Difficult</button>
+    <button type="button" class="btn btn-custom-p start-quiz"
+        onclick="window.location.href='/quiz/medium';">Medium</button>
+    <button type="button" class="btn btn-custom-p start-quiz"
+        onclick="window.location.href='/quiz/difficult';">Difficult</button>
 </div>
 
 <div class="row justify-content-center">
@@ -17,7 +19,7 @@
                     <a href="/scoreboard">
                         <div class="card-header center scoreboard-h">
                             Scoreboard Easy
-                        </div>  
+                        </div>
                     </a>
                     <ul id="scoreboard-start-easy" class="list-group list-group-flush">
                     </ul>
@@ -57,12 +59,31 @@
     </div>
 </div>
 <div class="white-box">
-    <h3 class="bold">How To Play</h3>
-    <p> bla bla bla Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, cupiditate harum. Nesciunt doloribus,
-        unde, earum consequatur magni, culpa necessitatibus minima maxime iusto placeat quis quae reiciendis harum
-        molestias eligendi vitae.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum optio consectetur numquam mollitia reprehenderit
-        natus quas harum necessitatibus veritatis debitis iure architecto, repellat dolore, nesciunt, ipsa saepe
-        explicabo quod hic!</p>
+    <h3 class="bold"> How to play & Rules </h3>
+    <h4> RIQ </h4>
+    <p> Each round consists of 10 questions, and you have 30 seconds per question to get your answer
+        correct. <br> If you need, want or dare you can choose to get a clue which will be presented as a
+        picture. <br> The clue may help you or even make you more confused that is one of the exiting thing about
+        RIQ
+    </p>
+    <h4> How to start a new quiz & play </h4>
+    <p>1) To start a new quiz just choose a difficulty level above
+    </p>
+    <p>2) Once you have selected a difficulty level a new quiz starts, and the first question is
+        presented to you. <br> Type in your answer, and
+        if it's correct next question will be presented. <br> Otherwise keep guessing, as you have unimited tries to
+        answer correcly until the time runs out </p>
+    <p> 3) When a round i finished your result will be presented, and you can choose to either save your score
+        to
+        the scoreboard or not
+    </p>
+    <p> 4) Lastley you can start a new quiz with the same difficulty level, or navigate back to the
+        home page and start a new fun quiz </p>
+
+    <h4> Rules </h4>
+    <p>The rules of RIQ is quite simple - answer correctly as fast a possible and you will earn more points, <br>
+        <i>but</i> be
+        aware if you decide to get a clue you will get fewer points
+    </p>
 </div>
 {% endblock %}

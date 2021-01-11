@@ -1,0 +1,157 @@
+/* fixes padding and make content take up the whole page*/
+html, body { 
+    height: 100%;
+    color: rgb(59, 59, 59);
+}
+header, nav, main, footer{
+    padding-left: 10px !important; 
+}
+.container{
+    min-width: 100%;
+}
+
+/* uses grid system for overall layout, but use boostrap-grid for more precise layout */
+#grid {
+    display: grid;
+    min-height: 100%;
+    min-width: 100%;
+    grid-template-rows: auto  1fr auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+        "nav"
+        "main"
+        "footer" 
+}
+
+/*ALL*/
+.white-box{
+    background-color: white ;
+    padding: 20px;
+    margin:20px;
+}
+.capital{
+    text-transform: capitalize;
+}
+.center{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: rgba(241, 242, 243, 0.945) !important;
+}
+ a:hover{
+   color:rgb(126, 186, 201) !important;
+    cursor: pointer;
+}
+.a-light{
+    color: rgb(57, 153, 177) !important;
+}
+.a-light:hover{
+    color:rgb(171, 193, 199) !important;
+    cursor: pointer;
+}
+.bold{
+    font-weight: bold;
+}
+.right{
+    float: right;
+}
+h2, h5{
+    margin-top:20px !important;
+}
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+.btn-custom-p{
+    background-color:  rgb(57, 153, 177);
+    color: rgba(241, 242, 243, 0.945);
+    margin: 10px;
+    width: 90px; 
+}
+.btn-custom-p:hover{
+    color:rgb(126, 186, 201) !important;
+}
+.btn-custom-s{
+    background-color:  rgba(241, 242, 243, 0.945) !important;
+    color:  rgb(57, 153, 177);
+  /*  border-width: 3px;
+    border-color:rgba(223, 232, 240, 0.945); */
+    margin: 10px;
+    width: 100px; 
+}
+.btn-custom-s:hover{
+    color:  rgb(152, 175, 180);
+} 
+
+/* HEADER / NAVIGATION*/
+nav{
+    grid-area: nav;
+}
+.navbar {
+    padding: 0px;
+ 
+   }
+.navbar-custom { 
+    background-color: rgb(57, 153, 177);
+}
+.nav-link{
+    font-size: 20px;
+}
+
+/* MAIN */
+main{
+    grid-area: main;
+    background-color: rgba(241, 242, 243, 0.945);
+}
+.carousel{
+    margin: 30px;
+    max-width: 700px;
+}
+.carousel-control-prev, .carousel-control-next{
+    align-items: flex-start !important;
+    margin: 5px;
+}
+.scoreboard-h{
+    color:  rgb(57, 153, 177);
+}
+.scoreboard-h:hover{
+    color: rgb(144, 191, 202)
+}
+
+/* QUIZ */
+#answer_input{
+    margin-left:0px;
+}
+#h2-quiz{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#show-img {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    }
+#question-card {
+    padding: 10px;
+    margin-bottom:20px;
+    }
+
+/* RESULT */
+#result{
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom:30px;
+    max-width: 900px;
+    }
+
+#name-form, #result-btns{
+    width:auto;
+}
+#result-btns{
+    padding-top:24px;
+}
+.result-btn{
+    width:auto;
+}
+
