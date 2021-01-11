@@ -6,12 +6,6 @@ import spark.template.pebble.PebbleTemplateEngine;
 
 import java.util.ArrayList;
 
-//request.params("foo");
-//response.type("text/xml");
-//response.body("Hello");
-//response.redirect("/bar");
-//redirect.get("/fromPath", "/toPath");
-
 /**
  * This is the serverpart that holds the connection and make it possible to make
  * requests.
@@ -44,13 +38,10 @@ public class RunServer {
         });
 
         post("/save", (req, res) -> {
-            // System.out.println(request.body()); // se vad post skickar oss
             return null;
         });
         get("/game/:diff", (req, res) -> {
-            System.out.println("här");
             Difficulty difficulty = Difficulty.valueOf(req.params(":diff").toString());
-            System.out.println("här");
             ArrayList<QuestionCard> game = controller.getQuestionCards(difficulty);
             Gson gson = new Gson();
             String json = gson.toJson(game);
@@ -81,11 +72,8 @@ public class RunServer {
 
         post("/score", (req, res) -> {
             String json = req.body();
-            // System.out.println(json);
             Gson gson = new Gson();
-            Score score = gson.fromJson(json, Score.class); // TODO: Kolla med Hanna och Rebecka hur deras JSOn-objekt
-                                                            // är konstruerat. Vi ändrade Date från Date.SQL till String
-                                                            // i Score.
+            Score score = gson.fromJson(json, Score.class);
             controller.addScore(score);
             return "";
         });

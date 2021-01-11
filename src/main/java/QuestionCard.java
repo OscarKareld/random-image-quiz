@@ -6,7 +6,6 @@
  */
 
 public class QuestionCard {
-    private String className = this.getClass().getName();
     private String id;
     private String question;
     private String answer;

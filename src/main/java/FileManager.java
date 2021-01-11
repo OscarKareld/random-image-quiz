@@ -4,7 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-
+/**
+ * Manage the storage of the highscores
+ *
+ * @author Hanna My Jansson, Oscar Kareld
+ * @version 1.0
+ */
 public class FileManager {
     ArrayList<Score> highscoreEasy;
     ArrayList<Score> highscoreMedium;
@@ -30,11 +35,13 @@ public class FileManager {
     public ArrayList<Score> getHighScore(Difficulty difficulty, int nbrOfScores) {
         ArrayList<Score> highScore;
         if(difficulty.equals(Difficulty.easy)){
-
+            Collections.sort(highscoreEasy);
             highScore = new ArrayList<>( highscoreEasy.subList(0, Math.min(nbrOfScores, highscoreEasy.size())));
         }else if(difficulty.equals(Difficulty.medium)){
+            Collections.sort(highscoreMedium);
             highScore = new ArrayList<>( highscoreMedium.subList(0, Math.min(nbrOfScores, highscoreMedium.size())));
         }else{
+            Collections.sort(highscoreDifficult);
             highScore = new ArrayList<>( highscoreDifficult.subList(0, Math.min(nbrOfScores, highscoreDifficult.size())));
         }
         return highScore;
@@ -52,9 +59,7 @@ public class FileManager {
 
         try(ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("files/highscore.txt")))){
             oos.writeObject(saveObject);
-            System.out.println("FileHandler: highscore written: " + saveObject.toString());
         }catch(FileNotFoundException e){
-            System.out.println("FileHandler: File not found");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,7 +77,6 @@ public class FileManager {
                 highscoreDifficult = savedObject[2];
             }
         }catch(FileNotFoundException e){
-            System.out.println("FileHandler: File not found");
             e.printStackTrace();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -80,12 +84,12 @@ public class FileManager {
         ;
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         FileManager fm = new FileManager();
 
 
        Score score = new Score();
-/*
+
         score.setDifficulty("easy");
         score.setPoints(2010);
         score.setUserNickName("Oscar");
@@ -211,7 +215,7 @@ public class FileManager {
         score237.setUserNickName("Rebecka");
         fm.addScore(score237);
 
-*/
+
 
       ArrayList<Score> a =  fm.getHighScore(Difficulty.medium, 12);
 
@@ -219,6 +223,6 @@ public class FileManager {
            System.out.println(a.get(i).getUserNickName() + " " + a.get(i).getPoints() + " poäng");
         }
     }
-
+*/
 
 }

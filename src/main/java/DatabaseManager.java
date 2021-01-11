@@ -96,16 +96,4 @@ public class DatabaseManager {
         return highScoreList;
     }
 
-    public static void main(String[] args) throws ClassNotFoundException {
-        DatabaseManager dbm = new DatabaseManager();
-        Score score = new Score();
-        score.setUserNickName("Oscar");
-        score.setPoints(80000);
-
-        score.setDifficulty("easy");
-
-        dbm.addScore(score); //TODO: Fick nåt exception från SQL, men värdena lades in i tabellen ändå. Vid testning räcker det med att ändra userNickName.
-//        dbm.testSelectQuery();
-        dbm.getHighScore(Difficulty.easy, 1);
-    }
 }
