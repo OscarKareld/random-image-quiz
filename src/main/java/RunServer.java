@@ -29,10 +29,6 @@ public class RunServer {
             return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/scoreboard.html"));
         });
 
-        get("/api", (req, res) -> {
-            return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/api.html"));
-        });
-
         get("/quiz/:diff", (req, res) -> {
             return new PebbleTemplateEngine().render(new ModelAndView(null, "templates/quiz.html"));
         });

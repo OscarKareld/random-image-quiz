@@ -87,6 +87,7 @@ function printQuestion() {
   else {
     index++
     // tar bort den gamla timern och skapar en ny
+    $("#answer_input").val('') // tömmer input
     clearTimeout(timerId);
     startTimer();
     // skriver ut fråga
