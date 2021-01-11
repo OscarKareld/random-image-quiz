@@ -87,6 +87,7 @@ function printQuestion() {
   else {
     index++
     // tar bort den gamla timern och skapar en ny
+    $("#answer_input").val('') // tömmer input
     clearTimeout(timerId);
     startTimer();
     // skriver ut fråga
@@ -131,7 +132,7 @@ function checkAnswer(event) {
 };
 
 function startTimer() {
-  timeLeft = 10;
+  timeLeft = 30;
   timerId = setInterval(countdown, 1000);
 
   function countdown() {
