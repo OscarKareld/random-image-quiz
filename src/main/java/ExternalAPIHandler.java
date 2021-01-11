@@ -23,11 +23,10 @@ public class ExternalAPIHandler {
     ArrayList<QuestionCard> medium = new ArrayList<>();
     ArrayList<QuestionCard> hard = new ArrayList<>();
 
-
-
     public void start(){
         ApiThread apiThread = new ApiThread();
         apiThread.start();
+        System.out.println("Servern är redo!");
     }
 
     /**
@@ -93,7 +92,7 @@ public class ExternalAPIHandler {
 
 
         }
-        System.out.println("Servern är redo!");
+
     }
 
 
@@ -270,7 +269,7 @@ public class ExternalAPIHandler {
             JSONObject jsonObject = jsonNode.getObject();
             JSONArray jsonArray = jsonObject.getJSONArray("hits");
             JSONObject jsonpicture = jsonArray.getJSONObject(0);
-            //System.out.println(jsonpicture.getString("previewURL"));
+            System.out.println(jsonpicture);
             pictureURL = jsonpicture.getString("previewURL");
         } catch (Exception e) {
             //System.out.println("hittar inget: " + pictureURL);
@@ -335,8 +334,8 @@ public class ExternalAPIHandler {
                 JSONObject jsonObject = jsonNode.getObject();
                 JSONArray jsonArray = jsonObject.getJSONArray("hits");
                 JSONObject jsonpicture = jsonArray.getJSONObject(0);
-                //System.out.println(jsonpicture.getString("previewURL"));
-                pictureURL = jsonpicture.getString("previewURL");
+                System.out.println(jsonpicture);
+                pictureURL = jsonpicture.getString("webformatURL");
             } catch (Exception e) {
                 //System.out.println("Hittar fortfarande inget ");
             }
@@ -393,8 +392,8 @@ public class ExternalAPIHandler {
     public static void main(String[] args) {
         ExternalAPIHandler externalAPIHandler = new ExternalAPIHandler();
         //externalAPIHandler.getGameWithQuestionCards(Difficulty.easy);
-//        externalAPIHandler.getPicture("blue whale water");
-        externalAPIHandler.cleanUpAnswer("HEJ/HOJ");
+ externalAPIHandler.getPicture("blue whale water");
+        //externalAPIHandler.cleanUpAnswer("HEJ/HOJ");
 
     }
 }
