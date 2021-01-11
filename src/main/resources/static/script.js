@@ -1,10 +1,7 @@
-// fixa scoreboard till fast bredd m.m.
-// specialtecken (mellanslag) , - dubbla mellanslag mellan ord.
-// endast ETT resultat per svårighet sparas --> resultat skrivsöver, permanent?
-// användarnamn(nickname) sparas inte i listan  
+// specialtecken ! ? & dubbla mellanslag mellan ord.
 // text första sidan
-// API sidan
-//ta bort mappen images? 
+// Vi får previewURL men vill ha webformatURL
+
 var questions = []
 var index = -1
 var timerId = 0
@@ -12,31 +9,72 @@ var answers = []
 var use_clue = false
 var timeLeft = -1 // varför -1? 
 
+//dropdown
+$('#navbarDropdownMenuLink').click(function(){
+  if($(".dropdown-menu").is(":visible")){
+    $('.dropdown-menu').hide();
+  }
+  else{
+    $('.dropdown-menu').show();
+  }
+});
+
+//knappar
 $('.start-quiz').click(startQuiz());
-$('.scoreboard-page').click(getScoreboard());
 $('#show-img').click(function(){
   $('#img-clue').show();
   use_clue = true
 });
-
+$("#name-form").submit(saveToScoreboard)
+$('.scoreboard-page').click(getScoreboard());
 
 function startQuiz() { //denna körs när ett spel startas 
   $('#result-page').hide();
+  $('#quiz-page').hide();
+  $('#loading').hide();
   // hämta svårighetsgrad
   var difficulty = window.location.pathname.replace("/quiz/", "")
+  difficulty.toLowerCase();
+  makeRequest();
+  var loadingInterval = null
   // hämtar frågorna
-  $.ajax({
-    method: "GET",
-    url: "http://localhost:8080/game/" + difficulty,
-    headers: { "Accept": "application/json" }
-  })
-    // kör igång spelet
-    .done(function (data) {
-      console.log(data);
-      questions = data;
-      $('#h2-quiz').text(difficulty + " Quiz");
-      printQuestion(questions[index]);
+  function makeRequest() {
+    $.ajax({
+      method: "GET",
+      url: "http://localhost:8080/game/" + difficulty,
+      headers: { "Accept": "application/json" }
     })
+      // kör igång spelet
+      .done(function (data) {
+        // visar laddar-sida
+        if(data == null){
+          $('#loading').show();
+          var i = 0;
+          if (!loadingInterval) {
+            loadingInterval = setInterval(function(){
+              i ++
+              var j
+              var dots = []
+
+              for (j = 0; j < i; j++) dots.push('.') 
+              $('#loading').html("Loading" + dots.join(''));
+              i = i % 3
+            }, 800)
+          } 
+          makeRequest();
+        }  
+        // sätter upp en spelomgång
+        else{
+          $('#loading').hide();
+          $('#quiz-page').show();
+          questions = data;
+          $('#h2-quiz').text(difficulty + " Quiz");
+          printQuestion(questions[index]);
+          console.log(data)
+          clearInterval(loadingInterval)
+        };
+      })
+  }
 };
 
 function printQuestion() {
@@ -45,18 +83,18 @@ function printQuestion() {
     clearTimeout(timerId);
     showResult();
   }
-
+  
   else {
     index++
+    // tar bort den gamla timern och skapar en ny
     clearTimeout(timerId);
     startTimer();
+    // skriver ut fråga
     use_clue = false
     $('#h4-quiz').text("Question " + (index + 1) + "/" + questions.length);
     $('.card-text').text(questions[index]['question']);
-    $('#img-clue').attr("src", "/images/cat.jpg" ); //questions[index]['image']
+    $('#img-clue').attr("src", questions[index]['image']); ///images/cat.jpg
     $('#img-clue').hide();
-    // tar bort den gamla timern och skapar en ny
-    
   }
 };
 
@@ -64,10 +102,10 @@ function printQuestion() {
 $("#question-form").submit(checkAnswer)
 
 function checkAnswer(event) {
-  event.preventDefault() // den gör så att saker funkar 
+  event.preventDefault()
   var points = (timeLeft * 10);
 
-  var answer = $("#answer_input").val().toLowerCase().replace(/[^a-z0-9 ]/g, ""); // hämtar spelarens svar   
+  var answer = $("#answer_input").val().toLowerCase().replace(/[^a-z0-9 ]/g, ""); // hämtar spelarens svar och fixar till det  
 
   console.log(questions[index]['answer'])
   $("#answer_input").val('') // tömmer input
@@ -93,7 +131,7 @@ function checkAnswer(event) {
 };
 
 function startTimer() {
-  timeLeft = 30;
+  timeLeft = 10;
   timerId = setInterval(countdown, 1000);
 
   function countdown() {
@@ -109,14 +147,8 @@ function startTimer() {
       clearTimeout(timerId);
       printQuestion()
     }
-   // else {
-      // visar bild
-   //   if (timeLeft == 15) {
-   //     $('#img-clue').show();
-   //   }
       $('#timer').text(timeLeft + ' seconds remaining');
       timeLeft--;
-  //  }
   }
 }
 
@@ -130,16 +162,14 @@ function showResult() {
   for (i = 0; i < 10; i++) {
     var item = $(document.createElement('li'));
     $(item).attr("class", "list-group-item");
-    $(item).html("Question: " + answers[i]['question'] + "<br> Answer: " + answers[i]['answer'] + "<br> Points: " + answers[i]['player_points']);
+    $(item).html("<span class='bold'>Question: </span>" + answers[i]['question'] + "<br> <span class='bold'>Answer: </span> <span class='capital'>" + answers[i]['answer'] + "</span> <br> <span class='bold'>Points: </span>" + answers[i]['player_points']);
     $(item).appendTo(".result-board");
   };
 
   var difficulty = window.location.pathname.replace("/quiz/", "")
   $("#play-again > a").attr("href", "/quiz/" + difficulty)
 
-};
-
-$("#name-form").submit(saveToScoreboard) // när namnet skickas körs saveToScoreboard 
+}; 
 
 function countPoints() {
   var points = 0
@@ -153,11 +183,10 @@ function saveToScoreboard(event) {
   event.preventDefault()
 
   var score = {
-    "nickname": $("#name_input").val(),
-    "points": countPoints(),
     "difficulty": window.location.pathname.replace("/quiz/", ""),
+    "points": countPoints(),
+    "userNickName": $("#name_input").val(),
   };
-  console.log($("#name_input").val(),)
 
   $.ajax({
     method: "POST",
@@ -166,8 +195,6 @@ function saveToScoreboard(event) {
     headers: { "Accept": "application/json" }
   })
     .done(function () {
-      console.log('Lagt till följande data:');
-      console.log(JSON.stringify(score));
       location.replace("http://localhost:8080/scoreboard");
     });
 }
@@ -175,11 +202,10 @@ function saveToScoreboard(event) {
 function getScoreboard() {
   $.ajax({
     method: "GET",
-    url: "http://localhost:8080/highscore?amount=1",
+    url: "http://localhost:8080/highscore?amount=30",
     headers: { "Accept": "application/json" }
   })
     .done(function (data) {
-      console.log(data);
       var scoreboards = data;
       showScoreboard(scoreboards)
 
@@ -189,12 +215,15 @@ function getScoreboard() {
 function showScoreboard(scoreboards) {
   for (i = 0; i < 3; i++) {
     var scoreboard = scoreboards[i]
+
     for (a = 0; a < scoreboard.length; a++) {
       var entry = $(document.createElement('li'));
+      var b = a+1
       $(entry).attr("class", "list-group-item");
       $(entry).appendTo("#scoreboard-" + scoreboard[a]['difficulty']);
-
-      var html = '<p><span class="left"> Hanna och Rebecka</span> <span class="right">' + scoreboard[a]['points'] + '</span></p>'
+      if (a < 3 && a < scoreboard.length)
+        $(entry).appendTo("#scoreboard-start-" + scoreboard[a]['difficulty']);
+      var html = '<p><span class="bold">'+ b + ". </span>" + scoreboard[a]['userNickName'] + '<span class="right bold">' + scoreboard[a]['points'] + '</span></p>'
       $(entry).append(html);
 
     }

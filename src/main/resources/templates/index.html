@@ -1,24 +1,25 @@
 {% extends "templates/base.html" %}
 
 {% block main %}
-<h2 class="text-center" id="h3-start"> Select a difficulty to start playing! </h3>
+<h2 class="center bold"> Welcome to Random Image Quiz! </h2>
+<h5 class="center"> Select a difficulty to start playing </h5>
 <div class="row justify-content-center">
-    <button type="button" class="btn btn-custom-p start-quiz"><a href="/quiz/easy">Easy</a></button>
-    <button type="button" class="btn btn-custom-p start-quiz"><a href="/quiz/medium">Medium</a></button>
-    <button type="button" class="btn btn-custom-p start-quiz"><a href="/quiz/difficult">Difficult</a></button>
+    <button type="button" class="btn btn-custom-p start-quiz" onclick="window.location.href='/quiz/easy';">Easy</button>
+    <button type="button" class="btn btn-custom-p start-quiz" onclick="window.location.href='/quiz/medium';">Medium</button>
+    <button type="button" class="btn btn-custom-p start-quiz" onclick="window.location.href='/quiz/difficult';">Difficult</button>
 </div>
 
 <div class="row justify-content-center">
-    <div id="carouselExampleDark" class="carousel carousel-dark slide w-50" data-bs-ride="carousel">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10000">
                 <div class="card">
                     <a href="/scoreboard">
                         <div class="card-header center scoreboard-h">
                             Scoreboard Easy
-                        </div>
+                        </div>  
                     </a>
-                    <ul id="scoreboard-easy" class="list-group list-group-flush">
+                    <ul id="scoreboard-start-easy" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>
@@ -29,7 +30,7 @@
                             Scoreboard Medium
                         </div>
                     </a>
-                    <ul id="scoreboard-medium" class="list-group list-group-flush">
+                    <ul id="scoreboard-start-medium" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>
@@ -40,7 +41,7 @@
                             Scoreboard Difficult
                         </div>
                     </a>
-                    <ul id="scoreboard-difficult" class="list-group list-group-flush">
+                    <ul id="scoreboard-start-difficult" class="list-group list-group-flush">
                     </ul>
                 </div>
             </div>
@@ -55,8 +56,8 @@
         </a>
     </div>
 </div>
-<div>
-    <h3>Rules of the game & How to play</h3>
+<div class="white-box">
+    <h3 class="bold">How To Play</h3>
     <p> bla bla bla Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, cupiditate harum. Nesciunt doloribus,
         unde, earum consequatur magni, culpa necessitatibus minima maxime iusto placeat quis quae reiciendis harum
         molestias eligendi vitae.</p>

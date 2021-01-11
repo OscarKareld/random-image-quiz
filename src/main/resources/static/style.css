@@ -24,34 +24,55 @@ header, nav, main, footer{
 }
 
 /*ALL*/
+.white-box{
+    background-color: white ;
+    padding: 20px;
+    margin:20px;
+}
+.capital{
+    text-transform: capitalize;
+}
 .center{
     text-align: center;
 }
+
 a{
     text-decoration: none;
     color: rgba(241, 242, 243, 0.945) !important;
 }
-a:hover{
-    color:rgb(126, 186, 201) !important;
+ a:hover{
+   color:rgb(126, 186, 201) !important;
+    cursor: pointer;
 }
-
-.right{
-    float: right;
+.a-light{
+    color: rgb(57, 153, 177) !important;
+}
+.a-light:hover{
+    color:rgb(171, 193, 199) !important;
+    cursor: pointer;
+}
+.bold{
     font-weight: bold;
 }
-h2{
-    margin-top:20px;
+.right{
+    float: right;
 }
+h2, h5{
+    margin-top:20px !important;
+}
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
 .btn-custom-p{
     background-color:  rgb(57, 153, 177);
     color: rgba(241, 242, 243, 0.945);
     margin: 10px;
-    width: 80px; 
+    width: 90px; 
 }
 .btn-custom-p:hover{
     color:rgb(126, 186, 201) !important;
 }
-
 .btn-custom-s{
     background-color:  rgba(241, 242, 243, 0.945) !important;
     color:  rgb(57, 153, 177);
@@ -62,7 +83,7 @@ h2{
 }
 .btn-custom-s:hover{
     color:  rgb(152, 175, 180);
-}
+} 
 
 /* HEADER / NAVIGATION*/
 nav{
@@ -85,7 +106,8 @@ main{
     background-color: rgba(241, 242, 243, 0.945);
 }
 .carousel{
-    margin:30px;
+    margin: 30px;
+    max-width: 700px;
 }
 .carousel-control-prev, .carousel-control-next{
     align-items: flex-start !important;
@@ -110,17 +132,26 @@ main{
     margin-top: 0px;
     margin-bottom: 5px;
     }
-#question_id {
+#question-card {
     padding: 10px;
+    margin-bottom:20px;
     }
-/* FOOTER */
 
-footer{
-    grid-area: footer;
-    background-color:  rgba(227, 230, 233, 0.945);
-    max-height: 30px;
+/* RESULT */
+#result{
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom:30px;
+    max-width: 900px;
+    }
+
+#name-form, #result-btns{
+    width:auto;
 }
-footer > p{
-    margin: 0px;
+#result-btns{
+    padding-top:24px;
+}
+.result-btn{
+    width:auto;
 }
 
