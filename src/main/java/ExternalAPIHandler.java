@@ -253,7 +253,7 @@ public class ExternalAPIHandler {
 
         try {
             response = Unirest.get("https://pixabay.com/api/")
-                    .queryString("key", "19377269-7e2c3f690ea34c13b2d506c0b")
+                    .queryString("key", "xxx") //nyckeln måste in här
                     .queryString("q", searchString)
                     .queryString("image_type", "photo")
                     .asJson();
@@ -281,7 +281,7 @@ public class ExternalAPIHandler {
 
             try {
                 response = Unirest.get("https://pixabay.com/api/")
-                        .queryString("key", "19377269-7e2c3f690ea34c13b2d506c0b")
+                        .queryString("key", "xxx") //nyckeln måste in här
                         .queryString("q", searchStringPart)
                         .queryString("image_type", "photo")
                         .asJson();
@@ -309,7 +309,7 @@ public class ExternalAPIHandler {
 
             try {
                 response = Unirest.get("https://pixabay.com/api/")
-                        .queryString("key", "19377269-7e2c3f690ea34c13b2d506c0b")
+                        .queryString("key", "xxx") //nyckeln måste in här
                         .queryString("q", searchString)
                         .queryString("image_type", "photo")
                         .asJson();
